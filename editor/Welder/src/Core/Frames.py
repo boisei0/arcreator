@@ -25,6 +25,7 @@ Panels = Core.Panels
 
 MinEditorSize = (1000, 500)
 
+
 class AuiManager_DCP_ARC(aui.AuiManager_DCP):
     """
     
@@ -40,6 +41,7 @@ class AuiManager_DCP_ARC(aui.AuiManager_DCP):
         dummy = Panels.ShadowPanel(self.GetManagedWindow())
         info = aui.AuiPaneInfo().CenterPane().NotebookDockable(True).Name('dummyCenterPane').DestroyOnClose(True)
         self.AddPane(dummy, info)
+
 
 class CoreEditorMainWindow(wx.Frame):
     
@@ -85,9 +87,9 @@ class CoreEditorMainWindow(wx.Frame):
 
         #start The autosave Time
         self.AutoSaveTimer = wx.Timer(self)
-        save_intervel = Kernel.GlobalObjects.get_value("Welder_config").getint("Main", "Autosave")
+        save_interval = Kernel.GlobalObjects.get_value("Welder_config").getint("Main", "Autosave")
         self.Bind(wx.EVT_TIMER, self.ProcessAutoSave, self.AutoSaveTimer)
-        self.AutoSaveTimer.Start(save_intervel * 60000, False)
+        self.AutoSaveTimer.Start(save_interval * 60000, False)
 
         #show the window
         wx.GetApp().SetTopWindow(self)
@@ -103,7 +105,7 @@ class CoreEditorMainWindow(wx.Frame):
 
     def CreateMenuBar(self):
         self.menubar = KM.get_component("MainMenuBar").object(self)
-        self.SetMenuBar(self.menubar) #Adding the MenuBar to the Frame.
+        self.SetMenuBar(self.menubar)  # Adding the MenuBar to the Frame.
         if Kernel.GlobalObjects.has_key("MainMenuBar"):
             Kernel.GlobalObjects.set_value("MainMenuBar", self.menubar)
         else:
@@ -126,10 +128,10 @@ class CoreEditorMainWindow(wx.Frame):
         if Kernel.GlobalObjects.has_key("Title"):
             if Kernel.GlobalObjects.get_value("Title") != "":
                 title = self.main_title + " - " + Kernel.GlobalObjects.get_value("Title")
-                if self.GetTitle() !=  title:
+                if self.GetTitle() != title:
                     self.SetTitle(title)
             else:
-                if self.GetTitle() !=  self.main_title:
+                if self.GetTitle() != self.main_title:
                     self.SetTitle(self.main_title)
 
     def OnClose(self, event):

@@ -293,8 +293,6 @@ class NewProjectDialog(wx.Dialog):
         return True
 
 
-
-
 #=======================================================================
 # NOTE: the below is for testing purposes only
 #=======================================================================

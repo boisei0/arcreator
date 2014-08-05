@@ -10,8 +10,7 @@ from Boot import WelderImport
 
 Kernel = WelderImport('Kernel')
 KM = Kernel.Manager
-import ConfigParser
-
+# import ConfigParser
 
 
 class CoreMainMenuBar(wx.MenuBar):
@@ -21,12 +20,12 @@ class CoreMainMenuBar(wx.MenuBar):
         self.mainwindow = mainwindow
         self.AddMenus()
 
-
     def AddMenus(self):
         self.filemenu = FileMenu(self.mainwindow)
         self.Append(self.filemenu, "&File")
         self.projectmenu = ProjectMenu(self.mainwindow)
         self.Append(self.projectmenu, "&Project")
+
 
 class FileMenu(wx.Menu):
 
@@ -38,7 +37,7 @@ class FileMenu(wx.Menu):
             file_history_length = config.getint("Main", "FileHistory")
         except:
             Kernel.Log("Invalid setting for FileHistory in configuration", "[FileHistory]", error=True)
-        if file_history_length  is None:
+        if file_history_length is None:
             file_history_length = 5
         self.filehistory = wx.FileHistory(file_history_length)
         self.filehistory.Load(Kernel.GlobalObjects.get_value("WX_config"))
@@ -49,6 +48,12 @@ class FileMenu(wx.Menu):
             Kernel.GlobalObjects.request_new_key("FileHistory", "CORE", self.filehistory)
           
         self.mainwindow = mainwindow
+
+        self.new = None
+        self.open = None
+        self.save = None
+        self.saveas = None
+        self.exit = None
 
         self.AddMenuItems()
 
@@ -112,13 +117,14 @@ class FileMenu(wx.Menu):
         openproject(self.mainwindow, self.filehistory, path)
 
     def update(self, event):
-        if Kernel.GlobalObjects.has_key("ProjectOpen") and (Kernel.GlobalObjects.get_value("ProjectOpen") == True):
+        if Kernel.GlobalObjects.has_key("ProjectOpen") and (Kernel.GlobalObjects.get_value("ProjectOpen")):
             event.Enable(True)
         else:
             event.Enable(False)
 
     def Exit(self, event):
         self.mainwindow.Close()
+
 
 class ProjectMenu(wx.Menu):
 
@@ -136,6 +142,7 @@ class ProjectMenu(wx.Menu):
 
     def RemoveMenuItem(self, name):
         self.RemoveItem(self.items[name])
+
 
 class PluginMenuItem(object):
 

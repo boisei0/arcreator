@@ -1,12 +1,12 @@
 '''
 Panels 
 
-Containes the panel classes dispatched by the Panel Manager
+Contains the panel classes dispatched by the Panel Manager
 '''
 
-import os
-import sys
-import copy
+# import os
+# import sys
+# import copy
 
 import wx
 
@@ -16,6 +16,7 @@ from Boot import WelderImport
 
 Kernel = WelderImport('Kernel')
 KM = Kernel.Manager
+
 
 class PanelBase(object):
 
@@ -40,6 +41,7 @@ class PanelBase(object):
                     else:
                         PM.set_last_active(id)
 
+
 class MainToolbar(aui.AuiToolBar):
 
     _arc_panel_info_string = "Name Caption ToolbarP Top Row CloseB"
@@ -53,7 +55,6 @@ class MainToolbar(aui.AuiToolBar):
 
         self.SetToolBitmapSize(wx.Size(16, 16))
 
-       
         #build toolbar
         self.AddTools()
         self.Realize()
@@ -290,7 +291,7 @@ class DatabaseToolbar(aui.AuiToolBar):
         self.Bind(wx.EVT_UPDATE_UI, self.uiupdate, id=self.scriptid)
 
     def uiupdate(self, event):
-        if Kernel.GlobalObjects.has_key("ProjectOpen") and (Kernel.GlobalObjects.get_value("ProjectOpen") == True):
+        if Kernel.GlobalObjects.has_key("ProjectOpen") and (Kernel.GlobalObjects.get_value("ProjectOpen")):
             event.Enable(True)
         else:
             event.Enable(False)
@@ -374,8 +375,15 @@ class DatabaseToolbar(aui.AuiToolBar):
 class StartPanel(wx.Panel, PanelBase):
 
     _arc_panel_info_string = "Name Caption Center CloseB CaptionV BestS MinimizeM MinimizeB MaximizeB Floatable Resizable Snappable NotebookD Movable DestroyOC"
-    _arc_panel_info_data = {"Name": "Start Panel", "Caption": "Start Panel", "CaptionV": True, "BestS": (32 * 24, 32 * 18), "MinimizeM": ["POS_SMART", "CAPT_SMART",], 
-                            "MinimizeB": True, "CloseB": True}
+    _arc_panel_info_data = {
+        "Name": "Start Panel",
+        "Caption": "Start Panel",
+        "CaptionV": True,
+        "BestS": (32 * 24, 32 * 18),
+        "MinimizeM": ["POS_SMART", "CAPT_SMART"],
+        "MinimizeB": True,
+        "CloseB": True
+    }
     
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
@@ -385,7 +393,15 @@ class StartPanel(wx.Panel, PanelBase):
 class ShadowPanel(wx.Panel, PanelBase):
 
     _arc_panel_info_string = "Name Caption CloseB CaptionV BestS MinimizeB Floatable Resizable Snappable NotebookD Movable DestroyOC"
-    _arc_panel_info_data = {"Name": "Shadow Panel", "Caption": "Shadow Panel", "CaptionV": False, "BestS": (1000 - 8, 500), "MinimizeB": False, "CloseB": False, "Floatable" : False,}
+    _arc_panel_info_data = {
+        "Name": "Shadow Panel",
+        "Caption": "Shadow Panel",
+        "CaptionV": False,
+        "BestS": (1000 - 8, 500),
+        "MinimizeB": False,
+        "CloseB": False,
+        "Floatable": False
+    }
     
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)

@@ -10,6 +10,7 @@ from Boot import WelderImport
 Kernel = WelderImport('Kernel')
 KM = Kernel.Manager
 
+
 class MainWindowLayout(object):
 
     def __init__(self, parent, aui_mgr):
@@ -25,7 +26,6 @@ class MainWindowLayout(object):
         self.CreateToolbars()
         self.CreateStartPanel()
         self.layout = KM.get_component("ARCModeLayout").object()
-        
 
     def CreateToolbars(self):
         self.maintoolbar = self.mgr.dispatch_panel("MainToolbar", "Main Toolbar")
@@ -41,7 +41,8 @@ class MainWindowLayout(object):
 
     def Refresh(self):
         self.layout.Refresh()
-        
+
+
 class ARCModeLayout(object):
     
     def __init__(self):
@@ -53,9 +54,8 @@ class ARCModeLayout(object):
         self.windows = []
         self.BuildPanes()
 
-
     def BuildPanes(self):
-        if Kernel.GlobalObjects.has_key("ProjectOpen") and (Kernel.GlobalObjects.get_value("ProjectOpen") == True) and Kernel.GlobalObjects.has_key("PROJECT"):
+        if Kernel.GlobalObjects.has_key("ProjectOpen") and (Kernel.GlobalObjects.get_value("ProjectOpen")) and Kernel.GlobalObjects.has_key("PROJECT"):
             self.CreateTilesetView()
             self.CreateTreeCtrl()
             #self.regesterParts()

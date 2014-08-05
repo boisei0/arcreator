@@ -21,11 +21,12 @@ KM = Kernel.Manager
 
 PygletGLPanel = Core.PygletWX.PygletGLPanel
 
+
 class EventStruct(object):
-    '''
-    A small data structure so that the Event Grid class can keep track 
+    """
+    A small data structure so that the Event Grid class can keep track
     of changes on specific events and draw them if they have changed
-    '''
+    """
 
     def __init__(self, x, y, tile_id, name, hue, direction, pattern):
         self.x = x
@@ -36,14 +37,15 @@ class EventStruct(object):
         self.direction = direction
         self.pattern = pattern
 
+
 class EventGrid(object):
-    '''
-    A organizer class, organizes and updates the sprites for events and 
+    """
+    A organizer class, organizes and updates the sprites for events and
     their background when they are drawn in the editor
-    '''
-    def __init__(self, map, cache, tileset=""):
+    """
+    def __init__(self, map_, cache, tileset=""):
         #set properties
-        self.map = map
+        self.map = map_
         self.cache = cache
         self.tileset_name = tileset
         #setup the rendering batch and the oarding groups
@@ -58,9 +60,9 @@ class EventGrid(object):
         self.update()
         
     def setupOutline(self):
-        '''
+        """
         draws an outline for the event and stores it so that it can be uses in sprites later
-        '''
+        """
         outlineEdgePattern = pyglet.image.SolidColorImagePattern((255, 255, 255, 255))
         eventOutline = outlineEdgePattern.create_image(24, 24).get_texture()
         outlineBackPattern = pyglet.image.SolidColorImagePattern((255, 255, 255, 80))
@@ -69,9 +71,9 @@ class EventGrid(object):
         self.eventOutline = eventOutline.get_image_data()
     
     def setEventGraphic(self, key):
-        '''
+        """
         takes an event id as a key and updates the sprite graphic
-        '''
+        """
         #get event
         event = self.events[key] 
         #if the graphic is a tile
@@ -92,18 +94,18 @@ class EventGrid(object):
                 sx = event.pattern * cw
                 sy = (event.direction - 2) / 2 * ch
                 rect = (sx + (cw - 22) / 2, bitmap.height - sy - ch / 2 - 5, 22, 22)
-        #draw a portion of the event graphic
+        # draw a portion of the event graphic
         if bitmap:
             image = pyglet.image.create(32, 32).get_texture()
-            reagion = bitmap.get_region(*rect)
-            image.blit_into(reagion, 5, 5, 0)
-        xpos = event.x * 32  + 16
-        ypos = ((self.map.height - event.y) * 32) - 32  + 16
-        if not self.sprites.has_key(key) or self.sprites[key][0] == None:
+            region = bitmap.get_region(*rect)
+            image.blit_into(region, 5, 5, 0)
+        xpos = event.x * 32 + 16
+        ypos = ((self.map.height - event.y) * 32) - 32 + 16
+        if not self.sprites.has_key(key) or self.sprites[key][0] is None:
             sprite = None
             if bitmap: 
-               sprite = rabbyt.Sprite(image, x=xpos, y=ypos)
-               self.graphics.append(sprite)
+                sprite = rabbyt.Sprite(image, x=xpos, y=ypos)
+                self.graphics.append(sprite)
             background = rabbyt.Sprite(self.eventOutline.get_texture(), x=xpos , y=ypos )
             self.backgrounds.append(background)
             self.sprites[key] = [sprite, background]
@@ -115,10 +117,10 @@ class EventGrid(object):
                 self.sprites[key][0] = None
             
     def updateEvent(self, key):
-        '''
+        """
         compares graphically relevant data to stored versions of the data
         for each event and sets the graphic to be updated if the data has changed
-        '''
+        """
         #get event
         flag = False
         mapEvent = self.map.events[key]
@@ -137,11 +139,11 @@ class EventGrid(object):
             xpos = event.x * 32 + 16
             ypos = ((self.map.height - event.y) * 32) - 32 + 16
             if self.sprites.has_key(key):
-                if self.sprites[key][0] != None:
+                if self.sprites[key][0] is not None:
                     if self.sprites[key][0].x != xpos or self.sprites[key][0].y != ypos:
                         self.sprites[key][0].xy = xpos, ypos
                     if self.sprites[key][1].x != xpos or self.sprites[key][1].y != ypos:
-                        self.sprites[key][1].xy = xpos , ypos 
+                        self.sprites[key][1].xy = xpos, ypos
             if event.tile_id != graphic.tile_id:
                 flag = True
                 event.tile_id = graphic.tile_id
@@ -159,13 +161,13 @@ class EventGrid(object):
                 event.pattern = graphic.pattern 
         if flag:
             self.setEventGraphic(key)
-        #test values that are drawn to see if the graphic (or position) need to be updated
+        # test values that are drawn to see if the graphic (or position) need to be updated
     
     def update(self):
-        '''
-        loops through every event and removes sprites for events that have been deleted, 
+        """
+        loops through every event and removes sprites for events that have been deleted,
         then calls the updateEvent method for the rest of the events
-        '''
+        """
         b = set(self.map.events.keys())
         a = self.events.keys()
         removed = [x for x in a if x not in b]
@@ -178,42 +180,43 @@ class EventGrid(object):
             self.updateEvent(key)
             
     def Draw(self):
-        '''
+        """
         Draws the rendering batch and thus all the attached sprites
-        '''
+        """
         rabbyt.render_unsorted(self.backgrounds)
         rabbyt.render_unsorted(self.graphics)
-        
+
+
 class TileGrid(object):
-    '''
-    A container and organizer class. maintains sprites that form a transparent 
+    """
+    A container and organizer class. maintains sprites that form a transparent
     grid over the tilemap when in the event mode
-    '''
+    """
     def __init__(self, map):
-        #store the map
+        # store the map
         self.map = map
-        #create an image for the sprites
+        # create an image for the sprites
         self.grid_image = pyglet.image.create(32, 32)
-        #get a rendering batch to draw the grid quickly
+        # get a rendering batch to draw the grid quickly
         self.renderingBatch = pyglet.graphics.Batch()
-        #setup the grid image
+        # setup the grid image
         self.setupGridImage()
-        #create all the sprites in the grid and store them in a numpy array of dtype object
+        # create all the sprites in the grid and store them in a numpy array of dtype object
         self.sprites = self.createGrid()
         
     def setupGridImage(self):
-        '''
-        draws the black outline around the edge of the tile 
-        '''
+        """
+        draws the black outline around the edge of the tile
+        """
         self.black_pattern = pyglet.image.SolidColorImagePattern((0, 0, 0, 255))
         self.grid_image = self.black_pattern.create_image(32, 32).get_texture()
         self.cut_pattern = pyglet.image.create(30, 30)
         self.grid_image.blit_into(self.cut_pattern, 1, 1, 0)
                 
     def createGrid(self):
-        '''
+        """
         loops through the maps x and y to create all the necessary sprites
-        '''
+        """
         shape = (self.map.width, self.map.height)
         sprites = numpy.empty(shape, dtype=object)
         for x in xrange(shape[0]):
@@ -223,30 +226,30 @@ class TileGrid(object):
         return sprites
     
     def makeSprite(self, x, y):
-        xpos = x * 32  + 16
-        ypos = ((self.map.height - y) * 32) - 32  + 16
+        xpos = x * 32 + 16
+        ypos = ((self.map.height - y) * 32) - 32 + 16
         sprite = rabbyt.Sprite(self.grid_image.get_texture(), x=xpos, y=ypos)
         sprite.alpha = 0.3
         return sprite
                                 
     def update(self):
-        '''
+        """
         updates the sprites in the grid so that if the map size changes the grid changes too
-        '''
+        """
         #if it isn't the same size as the map
         shape = (self.map.width, self.map.height)
         if self.sprites.shape != shape:
             self.resize(*shape)
                 
     def Draw(self, x, y, width, height):
-        '''
+        """
         draws the rendering batch and thus all the attached sprites
-        '''
+        """
         rabbyt.render_unsorted(self.sprites[x:x + width, y :y + height].flatten())
             
     def resize(self, xsize=1, ysize=1):
-        '''
-        '''
+        """
+        """
         newdata = numpy.empty((xsize, ysize), dtype=object)
         shape = self.sprites.shape
         mask = [0, 0, 0]
@@ -263,33 +266,34 @@ class TileGrid(object):
         shape = self.sprites.shape
         for x in xrange(shape[0]):
             for y in xrange(shape[1]):
-                if self.sprites[x, y] == None:
+                if self.sprites[x, y] is None:
                     self.sprites[x, y] = self.makeSprite(x, y)
                 else:
-                    xpos = x * 32  + 16
-                    ypos = ((self.map.height - y) * 32) - 32  + 16
+                    xpos = x * 32 + 16
+                    ypos = ((self.map.height - y) * 32) - 32 + 16
                     self.sprites[x, y].xy = xpos, ypos
+
 
 class Tilemap(object):
     
     def __init__(self, cache, table, tileset="", autotiles=[]):
-        #get the cache
+        # get the cache
         self.cache = cache
 
         self.table = table
         self.tile_ids = numpy.zeros(self.table.getShape(), order='F')
         self.blank_tile = pyglet.image.create(32, 32)
 
-        #diming image
+        # dimming image
         self.dimmingImagePatteren = None
         self.dimmingImage = None
 
-        #diming sprite
+        # dimming sprite
         self.dimmingSprite = None
         self.dimmingSpriteWidth = 0
         self.dimmingSpriteHeight = 0
 
-        #active layer
+        # active layer
         self.activeLayer = 0
 
         # bool for turning on layer diming on and off
@@ -303,9 +307,9 @@ class Tilemap(object):
         self.tiles = self.createTilemap()
     
     def UpdateDimmingSprite(self, width, height, scale):
-        '''
-        updates the diming sprite
-        '''
+        """
+        updates the dimming sprite
+        """
         if width != self.dimmingSpriteWidth or height != self.dimmingSpriteHeight or scale != self.dimmingSprite.scale:
             self.dimmingSpriteWidth = width
             self.dimmingSpriteHeight = height
@@ -317,16 +321,16 @@ class Tilemap(object):
             self.dimmingSprite.scale = scale
             
     def setDimXY(self, x, y):
-        '''
-        set the xy of the diming sprite
-        '''
+        """
+        set the xy of the dimming sprite
+        """
         if self.dimmingSprite != None:
             self.dimmingSprite.xy = x, y
             
     def createTilemap(self):
-        '''
+        """
         create the tilemap
-        '''
+        """
         shape = self.table.getShape()
         sprites = numpy.empty(shape, dtype=object, order='F')
         for x in xrange(shape[0]):
@@ -339,7 +343,7 @@ class Tilemap(object):
         newtiles = numpy.empty(shape, dtype=object, order='F')
         mask = [0, 0, 0]
         tileshape = tiles.shape
-        if  shape[0] >= tileshape[0]:
+        if shape[0] >= tileshape[0]:
             mask[0] = tileshape[0]
         else:
             mask[0] = shape[0]
@@ -379,33 +383,33 @@ class Tilemap(object):
     def makeSprite(self, x, y, z, texture=None):
         xpos = x * 32 + 16
         ypos = ((self.table.getShape()[1] - y) * 32) - 32 + 16
-        if texture == None:
+        if texture is None:
             texture = self.blank_tile.get_texture()
         sprite = rabbyt.Sprite(texture, x=xpos, y=ypos)
         return sprite
                        
     def update(self):
-        '''
+        """
         checks for change in tile ids and updates the tilemap
-        '''
-        #if the arn't the same size
+        """
+        # if the aren't the same size
         if self.tile_ids.shape != self.table.getShape():
-            self.resize(*self.table.getShape())
+            self.resize(*self.table.getShape())  # Boisei0: Potential breakpoint
         #find the tiles who's ids have changed
         indexes = numpy.argwhere(self.table._data != self.tile_ids)
-        #we have the idexes of the tiles we need to update so copy 
-        #the changed data over so we don;t have to update again
+        # we have the indexes of the tiles we need to update so copy
+        # the changed data over so we don;t have to update again
         self.tile_ids[:] = self.table._data[:]
         for index in indexes:
             self.set_image(tuple(index), self.tile_ids[tuple(index)])
          
     def set_image(self, index, id):
-        '''
+        """
         change the bitmap of a tile (by making a new sprite)
-        '''
+        """
         #if for some reason the sprite does not exist (ie. the map was resized) make it
         x, y, z = index
-        if self.tiles[index] == None: 
+        if self.tiles[index] is None:
             self.tiles[index] = self.makeSprite(x, y, z)
             
         flag = False
@@ -423,33 +427,33 @@ class Tilemap(object):
                 bitmap = self.cache.AutotilePattern(autotile, pattern)
                 if not bitmap:
                     bitmap = self.cache.AutotilePattern(autotile, pattern)
-                if not bitmap:
-                    flag = True
-                    bitmap = self.blank_tile
+                    if not bitmap:
+                        flag = True
+                        bitmap = self.blank_tile
         #normal tile
         else:
             #get the tile bitmap
             bitmap = self.cache.Tile(self.tileset_name, id, 0)
             if not bitmap:
                 bitmap = self.cache.Tile(self.tileset_name, id, 0)
-            if not bitmap:
-                flag = True
-                bitmap = self.blank_tile
+                if not bitmap:
+                    flag = True
+                    bitmap = self.blank_tile
         #draw the tile to the surface
         self.tiles[index].texture = bitmap.get_texture()
             
     def SetLayerOpacity(self, layer, opacity):
-        '''
+        """
         sets the alpha of all the sprite in a layer
-        '''
+        """
         layer = self.tiles[:, :, layer]
         for sprite in layer.flatten():
             sprite.alpha = opacity
             
     def SetActiveLayer(self, layer):
-        '''
-        sets the active layer, diming or changing alpha as needed
-        '''
+        """
+        sets the active layer, dimming or changing alpha as needed
+        """
         self.activeLayer = layer
         if layer == (self.table.getShape()[2] + 1):
             for z in xrange(self.table.getShape()[2]):
@@ -463,9 +467,9 @@ class Tilemap(object):
                         self.SetLayerOpacity(z, 0.3)
     
     def SetLayerDimming(self, bool):
-        '''
-        turns layer diming on and off, setting the alpha of the layers as needed
-        '''
+        """
+        turns layer dimming on and off, setting the alpha of the layers as needed
+        """
         self.LayerDimming = bool
         if self.LayerDimming:
             for z in xrange(self.table.getShape()[2]):
@@ -478,19 +482,20 @@ class Tilemap(object):
                 self.SetLayerOpacity(z, 1.0)
         
     def Draw(self, x, y, width, height):
-        '''
+        """
         draw the layers of the map
-        '''
+        """
         on_screen = self.tiles[x:x + width, y:y + height]
         if not self.LayerDimming or self.activeLayer > on_screen.shape[2]:
             #draw the dimlayer first
             self.dimmingSprite.render()
         for z in xrange(on_screen.shape[2]):
             if z == self.activeLayer and self.LayerDimming:
-                if self.dimmingSprite != None:
+                if self.dimmingSprite is not None:
                     self.dimmingSprite.render()
             rabbyt.render_unsorted(on_screen[:, :, z].flatten())            
-                         
+
+
 class MouseSprite(object):
     
     def __init__(self, map):
@@ -509,16 +514,16 @@ class MouseSprite(object):
         self.singleMode = False
         self.topLeftPos = [-1, -1]
         self.bottomRightPos = [-1, -1]
-        #create images to use
+        # create images to use
         self.setupImages()
-        #create the sprites
+        # create the sprites
         self.setupSprites()
             
     def setupImages(self):
-        #get out solid color patterns
+        # get out solid color patterns
         blackPattern = pyglet.image.SolidColorImagePattern((0, 0, 0, 255))
         whitePattern = pyglet.image.SolidColorImagePattern((255, 255, 255, 255))
-        #create the single image
+        # create the single image
         self.singleImage = blackPattern.create_image(32, 32).get_texture()
         whiteInner = whitePattern.create_image(30, 30)
         self.singleImage.blit_into(whiteInner, 1, 1, 0)
@@ -526,7 +531,7 @@ class MouseSprite(object):
         self.singleImage.blit_into(blackInner, 3, 3, 0)
         clearInner = pyglet.image.create(24, 24)
         self.singleImage.blit_into(clearInner, 4, 4, 0)
-        #get the pieces to construct the other sprites from the single sprite
+        # get the pieces to construct the other sprites from the single sprite
         TLCorner = self.singleImage.get_region(0, 16, 16, 16).get_image_data()
         BLCorner = self.singleImage.get_region(0, 0, 16, 16).get_image_data()
         TRCorner = self.singleImage.get_region(16, 16, 16, 16).get_image_data()
@@ -535,63 +540,63 @@ class MouseSprite(object):
         striateLV = self.singleImage.get_region(0, 8, 16, 16).get_image_data()
         striateTH = self.singleImage.get_region(8, 16, 16, 16).get_image_data()
         striateRV = self.singleImage.get_region(16, 8, 16, 16).get_image_data()
-        #Top Left corner
+        # Top Left corner
         self.TLCorner = pyglet.image.create(32, 32).get_texture()
         self.TLCorner.blit_into(TLCorner, 0, 16, 0)
         self.TLCorner.blit_into(striateLV, 0, 0, 0)
         self.TLCorner.blit_into(striateTH, 16, 16, 0)
-        #Bottom Left corner
+        # Bottom Left corner
         self.BLCorner = pyglet.image.create(32, 32).get_texture()
         self.BLCorner.blit_into(BLCorner, 0, 0, 0)
         self.BLCorner.blit_into(striateLV, 0, 16, 0)
         self.BLCorner.blit_into(striateBH, 16, 0, 0)
-        #Top Right corner
+        # Top Right corner
         self.TRCorner = pyglet.image.create(32, 32).get_texture()
         self.TRCorner.blit_into(TRCorner, 16, 16, 0)
         self.TRCorner.blit_into(striateRV, 16, 0, 0)
         self.TRCorner.blit_into(striateTH, 0, 16, 0)
-        #Bottom Right corner
+        # Bottom Right corner
         self.BRCorner = pyglet.image.create(32, 32).get_texture()
         self.BRCorner.blit_into(BRCorner, 16, 0, 0)
         self.BRCorner.blit_into(striateRV, 16, 16, 0)
         self.BRCorner.blit_into(striateBH, 0, 0, 0)
-        #Left Vertical
+        # Left Vertical
         self.LeftV = pyglet.image.create(32, 32).get_texture()
         self.LeftV.blit_into(striateLV, 0, 0, 0)
         self.LeftV.blit_into(striateLV, 0, 16, 0)
-        #Right Vertical
+        # Right Vertical
         self.RightV = pyglet.image.create(32, 32).get_texture()
         self.RightV.blit_into(striateRV, 16, 0, 0)
         self.RightV.blit_into(striateRV, 16, 16, 0)
-        #Left Corners
+        # Left Corners
         self.LeftC = pyglet.image.create(32, 32).get_texture()
         self.LeftC.blit_into(BLCorner, 0, 0, 0)
         self.LeftC.blit_into(TLCorner, 0, 16, 0)
         self.LeftC.blit_into(striateTH, 16, 16, 0)
         self.LeftC.blit_into(striateBH, 16, 0, 0)
-        #Right Corners
+        # Right Corners
         self.RightC = pyglet.image.create(32, 32).get_texture()
         self.RightC.blit_into(TRCorner, 16, 16, 0)
         self.RightC.blit_into(BRCorner, 16, 0, 0)
         self.RightC.blit_into(striateTH, 0, 16, 0)
         self.RightC.blit_into(striateBH, 0, 0, 0)
-        #Top Corners
+        # Top Corners
         self.TopC = pyglet.image.create(32, 32).get_texture()
         self.TopC.blit_into(TRCorner, 16, 16, 0)
         self.TopC.blit_into(TLCorner, 0, 16, 0)
         self.TopC.blit_into(striateLV, 0, 0, 0)
         self.TopC.blit_into(striateRV, 16, 0, 0)
-        #Bottom Corners
+        # Bottom Corners
         self.BottomC = pyglet.image.create(32, 32).get_texture()
         self.BottomC.blit_into(BLCorner, 0, 0, 0)
         self.BottomC.blit_into(BRCorner, 16, 0, 0)
         self.BottomC.blit_into(striateLV, 0, 16, 0)
         self.BottomC.blit_into(striateRV, 16, 16, 0)
-        #Top Horizontal 
+        # Top Horizontal
         self.TopH = pyglet.image.create(32, 32).get_texture()
         self.TopH.blit_into(striateTH, 0, 16, 0)
         self.TopH.blit_into(striateTH, 16, 16, 0)
-        #Bottom Horizontal 
+        # Bottom Horizontal
         self.BottomH = pyglet.image.create(32, 32).get_texture()
         self.BottomH.blit_into(striateBH, 0, 0, 0)
         self.BottomH.blit_into(striateBH, 16, 0, 0)
@@ -603,29 +608,29 @@ class MouseSprite(object):
         if type > 11:
             type = 11
         #create the right sprite
-        if type == 0: # TLC
+        if type == 0:  # TLC
             sprite = rabbyt.Sprite(self.TLCorner.get_texture(), x=x * 32, y=y * 32)
-        elif type == 1: # TRC
+        elif type == 1:  # TRC
             sprite = rabbyt.Sprite(self.TRCorner.get_texture(), x=x * 32, y=y * 32)
-        elif type == 2: # BLC
+        elif type == 2:  # BLC
             sprite = rabbyt.Sprite(self.BLCorner.get_texture(), x=x * 32, y=y * 32)
-        elif type == 3: # BRC
+        elif type == 3:  # BRC
             sprite = rabbyt.Sprite(self.BRCorner.get_texture(), x=x * 32, y=y * 32)
-        elif type == 4: # TH
+        elif type == 4:  # TH
             sprite = rabbyt.Sprite(self.TopH.get_texture(), x=x * 32, y=y * 32)
-        elif type == 5: # BH
+        elif type == 5:  # BH
             sprite = rabbyt.Sprite(self.BottomH.get_texture(), x=x * 32, y=y * 32)
-        elif type == 6: # LV
+        elif type == 6:  # LV
             sprite = rabbyt.Sprite(self.LeftV.get_texture(), x=x * 32, y=y * 32)
-        elif type == 7: # RV
+        elif type == 7:  # RV
             sprite = rabbyt.Sprite(self.RightV.get_texture(), x=x * 32, y=y * 32)
-        elif type == 8: # LC
+        elif type == 8:  # LC
             sprite = rabbyt.Sprite(self.LeftC.get_texture(), x=x * 32, y=y * 32)
-        elif type == 9: # RC
+        elif type == 9:  # RC
             sprite = rabbyt.Sprite(self.RightC.get_texture(), x=x * 32, y=y * 32)
-        elif type == 10: #TC
+        elif type == 10:  # TC
             sprite = rabbyt.Sprite(self.TopC.get_texture(), x=x * 32, y=y * 32)
-        elif type == 11: #BC
+        elif type == 11:  # BC
             sprite = rabbyt.Sprite(self.BottomC.get_texture(), x=x * 32, y=y * 32)
         #add the sprite to the sprites array so we can keep track of it 
         self.sprites.append(sprite)
@@ -636,8 +641,8 @@ class MouseSprite(object):
         self.singleTileSprite = rabbyt.Sprite(self.singleImage.get_texture(), x=-1, y=-1)
         self.sprites.append(self.singleTileSprite)
         #make corner sprites
-        for type in xrange(4): 
-            self.cornerSprites.append(self.makeSprite(type))
+        for type_ in xrange(4):
+            self.cornerSprites.append(self.makeSprite(type_))
         #add the left right corners
         self.LRCorners.append(self.makeSprite(8))
         self.LRCorners.append(self.makeSprite(9))
@@ -654,9 +659,9 @@ class MouseSprite(object):
         self.bottomRightPos[1] = y   
         
     def update(self):
-        '''
+        """
         updates the positions of the sprite used to represent the mouse cursor
-        '''
+        """
         fourCornersFlag = False
         verticalFlag = False
         horizontalFlag = False
@@ -772,9 +777,9 @@ class MouseSprite(object):
         self.verticalsprites.extend(self.rightRowSprites)
                                 
     def Draw(self):
-        '''
-        draws the rendering batchs to render the mouse sprites to the screen 
-        '''
+        """
+        draws the rendering batchs to render the mouse sprites to the screen
+        """
         fourCornersFlag = False
         verticalFlag = False
         horizontalFlag = False
@@ -819,7 +824,8 @@ class MouseSprite(object):
         if fourCornersFlag:
             #draw the four corner sprites
             rabbyt.render_unsorted(self.cornerSprites)
-        
+
+
 class MouseManager(object):
     
     def __init__(self, mapPanel, map, toolbar):
@@ -846,7 +852,7 @@ class MouseManager(object):
             self.topLeft[0] = x
             self.topLeft[1] = y
             self.mapPanel.NeedRedraw = True
-            if self.sprite != None:
+            if self.sprite is not None:
                 self.sprite.setTopLeft(x, y)
     
     def setBottomRight(self, x, y):
@@ -862,20 +868,21 @@ class MouseManager(object):
             self.bottomRight[0] = x
             self.bottomRight[1] = y
             self.mapPanel.NeedRedraw = True
-            if self.sprite != None:
+            if self.sprite is not None:
                 self.sprite.setBottomRight(x, y)
     
     def setSingleMode(self, value):
-        if self.sprite != None:
+        if self.sprite is not None:
             self.sprite.singleMode = value
-        
+
+
 class TilemapPanel(PygletGLPanel):
 
-    def __init__(self, parent, map, tilesets, toolbar, id=wx.ID_ANY):
-        super(TilemapPanel, self).__init__(parent, id, wx.DefaultPosition, wx.Size(800, 600), 
+    def __init__(self, parent, map, tilesets, toolbar, id_=wx.ID_ANY):
+        super(TilemapPanel, self).__init__(parent, id_, wx.DefaultPosition, wx.Size(800, 600),
               wx.VSCROLL | wx.HSCROLL | wx.SUNKEN_BORDER)
         
-        #set data
+        # set data
         self.map = map
         self.tilesets = tilesets
         self.NeedRedraw = False
@@ -892,14 +899,14 @@ class TilemapPanel(PygletGLPanel):
         
         self.MouseManager = MouseManager(self, self.map, self.toolbar)
         
-        #set up scrollbars
+        # set up scrollbars
         size = self.GetVirtualSizeTuple()
         width = self.map.width * 32
         height = self.map.height * 32
         self.SetScrollbar(wx.HORIZONTAL, 0, size[0], width, refresh=True)
         self.SetScrollbar(wx.VERTICAL, 0, size[1], height, refresh=True)
         
-        #scrollbar event
+        # scrollbar event
         self.Bind(wx.EVT_SCROLLWIN_TOP, self.scroll_top)
         self.Bind(wx.EVT_SCROLLWIN_BOTTOM, self.scroll_bottom)
         self.Bind(wx.EVT_SCROLLWIN_LINEUP, self.scroll_lineup)
@@ -955,18 +962,18 @@ class TilemapPanel(PygletGLPanel):
         event.Skip()
 
     def onEventLayer(self):
-        return (self.activeLayer == (self.map.data.getShape()[2] + 1))
+        return self.activeLayer == (self.map.data.getShape()[2] + 1)
         
     def SetTopLeftXY(self, event):
         x, y = self.ConvertEventCoords(event)
-        x = x / int(32 * self.zoom)
-        y = y / int(32 * self.zoom)
+        x /= int(32 * self.zoom)
+        y /= int(32 * self.zoom)
         self.MouseManager.setTopLeft(x, y)
     
     def SetBottomRightXY(self, event):
         x, y = self.ConvertEventCoords(event)
-        x = x / int(32 * self.zoom)
-        y = y / int(32 * self.zoom)
+        x /= int(32 * self.zoom)
+        y /= int(32 * self.zoom)
         self.MouseManager.setBottomRight(x, y)
 
     def ConvertEventCoords(self, event):
@@ -1002,7 +1009,7 @@ class TilemapPanel(PygletGLPanel):
         gl.glMatrixMode(gl.GL_MODELVIEW)
         
     def create_objects(self):
-        '''create opengl objects when opengl is initialized'''
+        """create opengl objects when opengl is initialized"""
         table = self.map.data
         self.cache = KM.get_component("RTPPygletCache").object()
         tileset = self.tilesets[self.map.tileset_id]
@@ -1014,12 +1021,12 @@ class TilemapPanel(PygletGLPanel):
         self.SetActiveLayer(self.activeLayer, True)
         
     def update_object_resize(self, width, height):
-        '''called when the window receives only if opengl is initialized'''
+        """called when the window receives only if opengl is initialized"""
         #update the scrollbar widths
         self.SetOrigin()
                
     def draw_objects(self):
-        '''called in the middle of ondraw after the buffer has been cleared'''
+        """called in the middle of ondraw after the buffer has been cleared"""
         self.tilemap.update()
         shape = self.map.data.getShape()
         x = math.ceil(self.GetScrollPos(wx.HORIZONTAL) / 32.0 / self.zoom)  - 1
@@ -1132,8 +1139,8 @@ class TilemapPanel(PygletGLPanel):
         if not init:
             self.OnDraw()
     
-    def SetLayerDimming(self, bool):
-        self.tilemap.SetLayerDimming(bool)
+    def SetLayerDimming(self, bool_):
+        self.tilemap.SetLayerDimming(bool_)
         self.SetOrigin()
         self.OnDraw()
         

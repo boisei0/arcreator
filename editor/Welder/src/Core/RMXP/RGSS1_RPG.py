@@ -38,6 +38,7 @@ Table = Core.RPGutil.Table
 Color = Core.RPGutil.Color
 Tone = Core.RPGutil.Tone
 
+
 class _Actor(object):
     _arc_class_path = "RPG::Actor"
     _arc_instance_variables = ['id', 'name', 'class_id', 'initial_level',
@@ -47,6 +48,7 @@ class _Actor(object):
                               'weapon_id', 'armor1_id', 'armor2_id',
                               'armor3_id', 'armor4_id', 'armor1_fix',
                               'armor2_fix', 'armor3_fix', 'armor4_fix', 'note']
+
     def __init__(self):
         self.id = 0
         self.name = ""
@@ -80,6 +82,7 @@ class _Actor(object):
         self.armor4_fix = False
         self.note = ''
 
+
 class _Animation(object):
     _arc_class_path = "RPG::Animation"
     _arc_instance_variables = ['id', 'name', 'animation_name',
@@ -96,12 +99,14 @@ class _Animation(object):
         self.frames = [RPG.Animation.Frame()]
         self.timings = []
 
+
 class _Frame(object):
     _arc_class_path = "RPG::Animation::Frame"
     _arc_instance_variables = ['cell_max', 'cell_data']
     def __init__(self):
         self.cell_max = 0
         self.cell_data = Table(0, 0)
+
 
 class _Timing(object):
     _arc_class_path = "RPG::Animation::Timing"
@@ -116,6 +121,7 @@ class _Timing(object):
         self.flash_duration = 5
         self.condition = 0
 
+
 class _Armor(object):
     _arc_class_path = "RPG::Armor"
     _arc_instance_variables = ['id', 'name', 'icon_name', 'description',
@@ -123,6 +129,7 @@ class _Armor(object):
                               'mdef', 'eva', 'str_plus', 'dex_plus',
                               'agi_plus', 'int_plus', 'guard_element_set',
                               'guard_state_set', 'note']
+
     def __init__(self):
         self.id = 0
         self.name = ""
@@ -142,19 +149,23 @@ class _Armor(object):
         self.guard_state_set = []
         self.note = ''
 
+
 class _AudioFile(object):
     _arc_class_path = "RPG::AudioFile"
     _arc_instance_variables = ['name', 'volume', 'pitch']
+
     def __init__(self, name="", volume=100, pitch=100):
         self.name = name
         self.volume = volume
         self.pitch = pitch
+
 
 class _Class(object):
     _arc_class_path = "RPG::Class"
     _arc_instance_variables = ['id', 'name', 'position', 'weapon_set',
                              'armor_set', 'element_ranks', 'state_ranks',
                              'learnings', 'note']
+
     def __init__(self):
         self.id = 0
         self.name = ""
@@ -166,16 +177,20 @@ class _Class(object):
         self.learnings = []
         self.note = ''
 
+
 class _Learning(object):
     _arc_class_path = "RPG::Class::Learning"
     _arc_instance_variables = ['level', 'skill_id']
+
     def __init__(self):
         self.level = 1
         self.skill_id = 1
 
+
 class _CommonEvent(object):
     _arc_class_path = "RPG::CommonEvent"
     _arc_instance_variables = ['id', 'name', 'trigger', 'switch_id', 'list']
+
     def __init__(self):
         self.id = 0
         self.name = ""
@@ -183,6 +198,7 @@ class _CommonEvent(object):
         self.switch_id = 1
         self.list = [RPG.EventCommand()]
         self._common = True
+
 
 class _Enemy(object):
     _arc_class_path = "RPG::Enemy"
@@ -193,6 +209,7 @@ class _Enemy(object):
                              'state_ranks', 'actions', 'exp', 'gold',
                              'item_id', 'weapon_id', 'armor_id',
                              'treasure_prob', 'note']
+
     def __init__(self):
         self.id = 0
         self.name = ""
@@ -221,12 +238,14 @@ class _Enemy(object):
         self.treasure_prob = 100
         self.note = ''
 
+
 class _Action(object):
     _arc_class_path = "RPG::Enemy::Action"
     _arc_instance_variables = ['kind', 'basic', 'skill_id',
                              'condition_turn_a', 'condition_turn_b',
                              'condition_hp', 'condition_level',
                              'condition_switch_id', 'rating']
+
     def __init__(self):
         self.kind = 0
         self.basic = 0
@@ -238,9 +257,11 @@ class _Action(object):
         self.condition_switch_id = 0
         self.rating = 5
 
+
 class _Event(object):
     _arc_class_path = "RPG::Event"
     _arc_instance_variables = ['id', 'name', 'x', 'y', 'pages']
+
     def __init__(self, x=0, y=0):
         self.id = 0
         self.name = ""
@@ -249,6 +270,7 @@ class _Event(object):
         self.pages = [RPG.Event.Page()]
         self._common = False
 
+
 class _EventPage(object):
     _arc_class_path = "RPG::Event::Page"
     _arc_instance_variables = ['condition', 'graphic', 'move_type',
@@ -256,6 +278,7 @@ class _EventPage(object):
                              'move_route', 'walk_anime', 'step_anime',
                              'direction_fix', 'through',
                              'always_on_top', 'trigger', 'list']
+
     def __init__(self):
         self.condition = RPG.Event.Page.Condition()
         self.graphic = RPG.Event.Page.Graphic()
@@ -271,6 +294,7 @@ class _EventPage(object):
         self.trigger = 0
         self.list = [RPG.EventCommand()]
 
+
 class _EventCondition(object):
     _arc_class_path = "RPG::Event::Page::Condition"
     _arc_instance_variables = ['switch1_valid', 'switch2_valid',
@@ -278,6 +302,7 @@ class _EventCondition(object):
                                'switch1_id', 'switch2_id',
                                'variable_id', 'variable_value',
                                'self_switch_ch']
+
     def __init__(self):
         self.switch1_valid = False
         self.switch2_valid = False
@@ -356,11 +381,13 @@ class _Item(object):
         self.minus_state_set = []
         self.note = ''
 
+
 class _Map(object):
     _arc_class_path = "RPG::Map"
     _arc_instance_variables = ['tileset_id', 'width', 'height',
                              'autoplay_bgm', 'bgs', 'encounter_list',
                              'encounter_step', 'data', 'events']
+
     def __init__(self, width=20, height=15):
         self.tileset_id = 1
         self.width = width
@@ -374,6 +401,7 @@ class _Map(object):
         self.data = Table(width, height, 3)
         self.events = {}
 
+
 class _MapInfo(object):
     _arc_class_path = "RPG::MapInfo"
     _arc_instance_variables = ['name', 'parent_id', 'order', 'expanded',
@@ -386,20 +414,25 @@ class _MapInfo(object):
         self.scroll_x = 0
         self.scroll_y = 0
 
+
 class _MoveCommand(object):
     _arc_class_path = "RPG::MoveCommand"
     _arc_instance_variables = ['code', 'parameters']
+
     def __init__(self, code=0, parameters=[]):
         self.code = code
         self.parameters = parameters
 
+
 class _MoveRoute(object):
     _arc_class_path = "RPG::MoveRoute"
     _arc_instance_variables = ['repeat', 'skippable', 'list']
+
     def __init__(self):
         self.repeat = True
         self.skippable = False
         self.list = [RPG.MoveCommand()]
+
 
 class _Skill(object):
     _arc_class_path = "RPG::Skill"
@@ -410,6 +443,7 @@ class _Skill(object):
                              'dex_f', 'agi_f', 'int_f', 'hit', 'pdef_f',
                              'mdef_f', 'variance', 'element_set',
                              'plus_state_set', 'minus_state_set', 'note']
+
     def __init__(self):
         self.id = 0
         self.name = ""
@@ -438,6 +472,7 @@ class _Skill(object):
         self.minus_state_set = []
         self.note = ''
 
+
 class _State(object):
     _arc_class_path = "RPG::State"
     _arc_instance_variables = ['id', 'name', 'animation_id', 'restriction',
@@ -450,6 +485,7 @@ class _State(object):
                              'auto_release_prob', 'shock_release_prob',
                              'guard_element_set', 'plus_state_set',
                              'minus_state_set', 'note']
+
     def __init__(self):
         self.id = 0
         self.name = ""
@@ -481,6 +517,7 @@ class _State(object):
         self.minus_state_set = []
         self.note = ''
 
+
 class _System(object):
     _arc_class_path = "RPG::System"
     _arc_instance_variables = ['magic_number', 'party_members', 'elements',
@@ -495,6 +532,7 @@ class _System(object):
                              'test_troop_id', 'start_map_id', 'start_x',
                              'start_y', 'battleback_name', 'battler_name',
                              'battler_hue', 'edit_map_id']
+
     def __init__(self):
         self.magic_number = 0
         self.party_members = [1]
@@ -532,11 +570,13 @@ class _System(object):
         self.battler_hue = 0
         self.edit_map_id = 1
 
+
 class _TestBattler(object):
     _arc_class_path = "RPG::System::TestBattler"
     _arc_instance_variables = ['actor_id', 'level', 'weapon_id',
                          'armor1_id', 'armor2_id', 'armor3_id',
                          'armor4_id']
+
     def __init__(self):
         self.actor_id = 1
         self.level = 1
@@ -546,12 +586,14 @@ class _TestBattler(object):
         self.armor3_id = 0
         self.armor4_id = 0
 
+
 class _Words(object):
     _arc_class_path = "RPG::Words"
     _arc_instance_variables = ['gold', 'hp', 'sp', 'str', 'dex', 'agi',
                             'int', 'atk', 'pdef', 'mdef', 'weapon',
                             'armor1', 'armor2', 'armor3', 'armor4',
                             'attack', 'skill', 'guard', 'item', 'equip']
+
     def __init__(self):
         self.gold = ""
         self.hp = ""
@@ -574,6 +616,7 @@ class _Words(object):
         self.item = ""
         self.equip = ""
 
+
 class _Tileset(object):
     _arc_class_path = "RPG::Tileset"
     _arc_instance_variables = ['id', 'name', 'tileset_name',
@@ -582,6 +625,7 @@ class _Tileset(object):
                              'fog_opacity', 'fog_blend_type', 'fog_zoom',
                              'fog_sx', 'fog_sy', 'battleback_name',
                              'passages', 'priorities', 'terrain_tags']
+
     def __init__(self):
         self.id = 0
         self.name = ""
@@ -602,9 +646,11 @@ class _Tileset(object):
         self.priorities[0] = 5
         self.terrain_tags = Table(384)
 
+
 class _Troop(object):
     _arc_class_path = "RPG::Troop"
     _arc_instance_variables = ['id', 'name', 'members', 'pages', 'note']
+
     def __init__(self):
         self.id = 0
         self.name = ""
@@ -612,13 +658,16 @@ class _Troop(object):
         self.pages = [RPG.Troop.Page()]
         self.note = ''
 
+
 class _TroopPage(object):
     _arc_class_path = "RPG::Troop::Page"
     _arc_instance_variables = ['span', 'list']
+
     def __init__(self):
         self.condition = RPG.Troop.Page.Condition()
         self.span = 0
         self.list = [RPG.EventCommand()]
+
 
 class _TroopCondition(object):
     _arc_class_path = "RPG::Troop::Page::Condition"
@@ -627,6 +676,7 @@ class _TroopCondition(object):
                              'turn_a', 'turn_b', 'enemy_index',
                              'enemy_hp', 'actor_id', 'actor_hp',
                              'switch_id']
+
     def __init__(self):
         self.turn_valid = False
         self.enemy_valid = False
@@ -640,15 +690,18 @@ class _TroopCondition(object):
         self.actor_hp = 50
         self.switch_id = 1
 
+
 class _Member(object):
     _arc_class_path = "RPG::Troop::Member"
     _arc_instance_variables = ['enemy_id', 'x', 'y', 'hidden', 'immortal']
+
     def __init__(self):
         self.enemy_id = 1
         self.x = 0
         self.y = 0
         self.hidden = False
         self.immortal = False
+
 
 class _Weapon(object):
     _arc_class_path = "RPG::Weapon"
@@ -657,6 +710,7 @@ class _Weapon(object):
                              'atk', 'pdef', 'mdef', 'str_plus', 'dex_plus',
                              'agi_plus', 'int_plus', 'element_set',
                              'plus_state_set', 'minus_state_set', 'note']
+
     def __init__(self):
         self.id = 0
         self.name = ""
@@ -677,6 +731,7 @@ class _Weapon(object):
         self.minus_state_set = []
         self.note = ''
 
+
 def instance_repr(self):
     results = []
     for key, value in self.__dict__.items():
@@ -688,10 +743,11 @@ def instance_repr(self):
     parts = []
     for key in results:
         parts.append("%s:%s" % (key, repr(getattr(self, key))))
-    template =  ("%s, " * (len(results) - 1)) + "%s"
-    data =  tuple(parts)
-    instane_vars = template % data
-    return "<%s instance at %s: %s>" % (self.__class__.__name__, id(self), instane_vars)
+    template = ("%s, " * (len(results) - 1)) + "%s"
+    data = tuple(parts)
+    instance_vars = template % data
+    return "<%s instance at %s: %s>" % (self.__class__.__name__, id(self), instance_vars)
+
 
 class RPG(object):
     __repr__ = instance_repr

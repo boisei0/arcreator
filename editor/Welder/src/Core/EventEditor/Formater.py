@@ -528,7 +528,7 @@ class Command111(object):
                     Format.red('%(character_id)04d'),
                     Format.bold('is'),
                     Format.green('%(character_direction_name)s')
-                )) % format
+                )) % format  # Boisei0: Potential breakpoint
         elif mode == 7:  # gold
             if format['gold_mode'] == 0:
                 html = ('Party Gold %s %s' % (Format.bold('>='), Format.red('%(gold_value)s'))) % format

@@ -14,20 +14,30 @@ Panels = Core.Panels
 class MapPanel(wx.Panel, Panels.PanelBase):
     
     _arc_panel_info_string = "Name Caption Center CloseB CaptionV BestS MinimizeM MinimizeB MaximizeB Floatable Resizable Snappable NotebookD Movable IconARCM DestroyOC"
-    _arc_panel_info_data = {"Name": "Map Editor:", "Caption": "Map Editor:", "CaptionV": True, "BestS": (32 * 24, 32 * 18), "MinimizeM": ["POS_SMART", "CAPT_SMART",], 
-                            "MinimizeB": True, "CloseB": True, "NotebookP" : [1], 'IconARCM': 'map_icon'}
+    _arc_panel_info_data = {
+        "Name": "Map Editor:",
+        "Caption": "Map Editor:",
+        "CaptionV": True,
+        "BestS": (32 * 24, 32 * 18),
+        "MinimizeM": ["POS_SMART", "CAPT_SMART"],
+        "MinimizeB": True,
+        "CloseB": True,
+        "NotebookP": [1],
+        'IconARCM': 'map_icon'
+    }
 
-    def __init__(self, parent, map, tilesets):
-        '''lays out a toolbar and the map window'''
+    def __init__(self, parent, map_, tilesets):
+        """lays out a toolbar and the map window"""
         super(MapPanel, self).__init__(parent)
         self.Show(False)
         #set data
-        self.map = map
+        self.map = map_
         self.caption = "Map Editor:"
         self.panel_name = "Map Editor:"
         self.tilesets = tilesets
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         #toolbar
+        self.toolbar = None
         self.Create_Toolbar()
         #map
         self.mapwin = TilemapPanel(self, self.map, self.tilesets, self.toolbar)
@@ -40,20 +50,20 @@ class MapPanel(wx.Panel, Panels.PanelBase):
         self.Show()
            
     def Create_Toolbar(self):
-        '''creates the toolbar and adds tools'''
+        """creates the toolbar and adds tools"""
         self.toolbar = MapToolbar(self, self.map)
-        self.sizer.Add(self.toolbar, 0, wx.EXPAND|wx.ALL, 0)
+        self.sizer.Add(self.toolbar, 0, wx.EXPAND | wx.ALL, 0)
 
     def UpdateUI(self, event):
         pass
-               
+
+
 class MapToolbar(wx.ToolBar):
-    
-    def __init__(self, parent, map, style=wx.TB_HORIZONTAL | wx.NO_BORDER | wx.TB_FLAT):
-        '''Toolbar for the map editor'''
+    def __init__(self, parent, map_, style=wx.TB_HORIZONTAL | wx.NO_BORDER | wx.TB_FLAT):
+        """Toolbar for the map editor"""
         super(MapToolbar, self).__init__(parent, style=style)
         
-        self.map = map
+        self.map = map_
         self.mapwin = None
         self.layers = self.map.data.getShape()[2]
         self.layerChoiceIDs = {}
@@ -64,18 +74,18 @@ class MapToolbar(wx.ToolBar):
         self.BindToolEvents()
         
     def SetupTools(self):
-        tsize = (16,16)
-        new_bmp =  wx.ArtProvider.GetBitmap(wx.ART_NEW, wx.ART_TOOLBAR, tsize)
+        tsize = (16, 16)
+        new_bmp = wx.ArtProvider.GetBitmap(wx.ART_NEW, wx.ART_TOOLBAR, tsize)
         self.SetToolBitmapSize(tsize)
         self.SetToolSeparation(10)
         self.SetMargins((4, 4))
-        #add layer tools
-        #generate choice list 
+        # add layer tools
+        # generate choice list
         layerChoices = self.GenLayerChoices()
         self.layerChoice = wx.Choice(self, wx.ID_ANY, size=(-1, -1), choices=layerChoices)
         self.layerChoice.SetSelection(0)
         self.AddControl(self.layerChoice)
-        #self.AddSeparator() 
+        # self.AddSeparator()
         # a dimlayers choice box
         self.dimLayersCB = wx.CheckBox(self, label="Dim Layers")
         self.dimLayersCB.SetValue(True)
@@ -102,8 +112,8 @@ class MapToolbar(wx.ToolBar):
     def GenZoomChoices(self):
         choices = []
         self.zoomChoiceIDs = {}
-        values = [['2x', 2.0], ['1x', 1.0], ['1/2x', 1.0/2.0], #['1/3x', 1.0/3.0], 
-                 ['1/4x', 1.0/4.0], ]#['1/5x', 1.0/5.0]]
+        values = [['2x', 2.0], ['1x', 1.0], ['1/2x', 1.0/2.0],  # ['1/3x', 1.0/3.0],
+                 ['1/4x', 1.0/4.0], ]  # ['1/5x', 1.0/5.0]]
         for z in values:
             self.zoomChoiceIDs[z[0]] = z[1]
             choices.append(z[0])
@@ -128,19 +138,19 @@ class MapToolbar(wx.ToolBar):
         self.SelectID = 9
                 
     def OnDimLayersChoice(self, event):
-        if self.mapwin != None:
+        if self.mapwin is not None:
             self.mapwin.SetLayerDimming(event.IsChecked())
     
     def OnLayerChoice(self, event):
         self.layerSet = False
-        if self.mapwin != None:
+        if self.mapwin is not None:
             self.layerSet = True
             layer = self.layerChoiceIDs[self.layerChoice.GetItems()[self.layerChoice.GetSelection()]]
             self.mapwin.SetActiveLayer(layer)
     
     def OnZoomChoice(self, event):
         self.zoomSet = False
-        if self.mapwin != None:
+        if self.mapwin is not None:
             self.zoomSet = True
             zoom = self.zoomChoiceIDs[self.zoomChoice.GetItems()[self.zoomChoice.GetSelection()]]
             self.mapwin.SetZoom(zoom)
@@ -150,7 +160,7 @@ class MapToolbar(wx.ToolBar):
             self.layers = self.map.data.getShape()[2]
             choices = self.GenLayerChoices()
             self.layerChoice.SetItems(choices)
-        if (self.mapwin != None) and (not self.layerSet):
+        if self.mapwin is not None and not self.layerSet:
             self.layerSet = True
             selection = self.layerChoice.GetSelection()
             items = self.layerChoice.GetItems()
@@ -158,10 +168,9 @@ class MapToolbar(wx.ToolBar):
             self.mapwin.SetActiveLayer(layer) 
             
     def UpdateZoomChoice(self, event): 
-        if (self.mapwin != None) and (not self.zoomSet):
+        if self.mapwin is not None and not self.zoomSet:
             self.zoomSet = True
             selection = self.zoomChoice.GetSelection()
             items = self.zoomChoice.GetItems()
             layer = self.zoomChoiceIDs[items[selection]]
-            self.mapwin.SetZoom(layer) 
-
+            self.mapwin.SetZoom(layer)
