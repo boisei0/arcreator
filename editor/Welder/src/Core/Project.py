@@ -16,6 +16,7 @@ from Boot import WelderImport
 Kernel = WelderImport('Kernel')
 KM = Kernel.Manager
 
+
 class Project(object):
     
     def __init__(self):
@@ -28,7 +29,7 @@ class Project(object):
         self.save_func = None
 
     def addAdvancedHandler(self, handler, name):
-        self.addFolderToZip[name] = handler
+        self.addFolderToZip[name] = handler  # Boisei0: Potential breakpoint
 
     def removeAdvancedHandler(self, name):
         del self.advanced_handlers[name]
@@ -169,7 +170,7 @@ class Project(object):
         for key, value in self._data.items():
             if value[0]:
                 changed_flag = True
-        for key, vlaue in self._deferred_data.items():
+        for key, value in self._deferred_data.items():
             if value[0]:
                 changed_flag = True
         return changed_flag
@@ -182,21 +183,21 @@ class Project(object):
         return changed_flag
 
     def saveData(self, key):
-        if (self.save_func != None) and callable(self.save_func):
+        if (self.save_func is not None) and callable(self.save_func):
             Kernel.Protect(self.save_func)(os.path.dirname(self.project_path), key, self.getData(key))
             self.setChangedData(key, False)
         else:
             Kernel.Log("Warning: no save function set for project. Data files NOT saved", "[Project]")
                 
     def saveDeferredData(self, key):
-        if (self.save_func != None) and callable(self.save_func):
+        if (self.save_func is not None) and callable(self.save_func):
             Kernel.Protect(self.save_func)(os.path.dirname(self.project_path), key, self.getDeferredData(key))
             self.setChangedDeferredData(key, False)
         else:
             Kernel.Log("Warning: no save function set for project. Data files NOT saved", "[Project]")
 
     def saveMapData(self, id_num):
-        if (self.save_func != None) and callable(self.save_func):
+        if (self.save_func is not None) and callable(self.save_func):
             self.save_func(os.path.dirname(self.project_path), "Map%03d" % id_num, self.getDeferredData("Map%03d" % id_num))
             self.setChangedDeferredData("Map%03d" % id_num, False)
         else:
@@ -235,7 +236,8 @@ class Project(object):
                
     def loadProject(self, backup=True):
         if os.path.exists(self.project_path):
-            if backup: self.Backup()
+            if backup:
+                self.Backup()
             config = ConfigParser.ConfigParser()
             config.read(os.path.normpath(self.project_path))
             infos = config.items("Project")
@@ -246,8 +248,10 @@ class Project(object):
             for file_name in files:
                 if file_name != "":
                     if not self.testAdvancedHandlersLoad(file_name):
-                        if (self.load_func != None) and callable(self.load_func):
-                            self.setData(file_name, Kernel.Protect(self.load_func)(os.path.dirname(self.project_path), file_name), False)
+                        if (self.load_func is not None) and callable(self.load_func):
+                            self.setData(file_name,
+                                         Kernel.Protect(self.load_func)(os.path.dirname(self.project_path), file_name),
+                                         False)
                         else:
                             self.setData(file_name, None, False)
                             Kernel.Log("Warning: no load function set for project. Data for %s set to None" % file_name, "[Project]")
@@ -412,7 +416,8 @@ class ARCProjectCreator(object):
 
     def setProject(self, project):
         self.project = project
-                   
+
+
 def ARCProjectSaveFunction(dir_name, filename, obj):
     dir_path = os.path.join(dir_name, "Data")
     path = os.path.join(dir_path, filename + ".arc")
@@ -427,7 +432,8 @@ def ARCProjectSaveFunction(dir_name, filename, obj):
         f.close()
     except IOError:
         Kernel.Log("IO Error encountered Saving file %s" % path, "[ARC Save Function]", True)
-    
+
+
 def ARCProjectLoadFunction(dir_name, filename):
     path = os.path.join(dir_name, "Data", filename + ".arc")
     if os.path.exists(path) and (not os.path.isdir(path)):
@@ -448,7 +454,8 @@ def ARCProjectLoadFunction(dir_name, filename):
     else:
         Kernel.Log("Warning: file %s does not exist. Returned None" % path, "[ARC Load Function]")
         return None
-    
+
+
 class ARCProjectSaver(object):
 
     def __init__(self, project):
@@ -466,6 +473,7 @@ class ARCProjectSaver(object):
     def setProject(self, project):
         self.project = project
 
+
 class ARCProjectLoader(object):
 
     def __init__(self):
@@ -475,7 +483,6 @@ class ARCProjectLoader(object):
         self.project.setProjectPath(path)
         self.project.setLoadFunc(KM.get_component("ARCProjectLoadFunction").object)
         self.project.loadProject()
-        
 
     def getProject(self):
         return self.project
