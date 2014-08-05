@@ -17,7 +17,7 @@ class Manager(object):
     @staticmethod
     def EnsureScriptDirectory():
         """Ensures the project's script directory exists"""
-        projDir = Kernel.GlobalObjects.get_value("CurrentProjectDir")
+        projDir = os.path.dirname(Kernel.GlobalObjects.get_value("CurrentProjectDir"))
         dir = os.path.join(projDir, 'Data', 'Scripts')
         if not os.path.exists(dir) or not os.path.isdir(dir):
             Kernel.Protect(os.makedirs, True)(dir)
@@ -37,13 +37,13 @@ class Manager(object):
         from fnmatch import fnmatch
         
         Manager.EnsureScriptDirectory()
-        projDir = Kernel.GlobalObjects.get_value("CurrentProjectDir")
+        projDir = os.path.dirname(Kernel.GlobalObjects.get_value("CurrentProjectDir"))  # Boisei0: in some cases, this goes wrong => get dirname to fix it
         dir = os.path.join(projDir, 'Data', 'Scripts')
         # TODO: Include internal scripts as read-only entries?
         paths = []
-        for file in os.listdir(dir):
-            if fnmatch(file, '*.rb'):
-                paths.append(os.path.join(dir, file))
+        for file_ in os.listdir(dir):
+            if fnmatch(file_, '*.rb'):
+                paths.append(os.path.join(dir, file_))
         scripts = [Script(i, path, False) for i, path in enumerate(sorted(paths))]
         if Kernel.GlobalObjects.has_key('Scripts'):
             Kernel.GlobalObjects.set_value('Scripts', scripts)

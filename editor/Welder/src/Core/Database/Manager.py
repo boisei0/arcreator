@@ -10,19 +10,19 @@ Kernel = WelderImport('Kernel')
 Core = WelderImport('Core')
 KM = Kernel.Manager
 
-class Manager(object):
 
+class Manager(object):
     ARC_FORMAT = False
-    
+
     TEXT_COLOR = wx.Colour(241, 243, 248)
     GRADIENT_LEFT = wx.Colour(100, 100, 100)
     GRADIENT_RIGHT = wx.Colour(60, 60, 60)
 
     PYXAL = None
 
-    #----------------------------------------------------------------------------------
+    # ----------------------------------------------------------------------------------
     @staticmethod
-    def RenderImage( glCanvas, filename, hue=0, type='battler'):
+    def RenderImage(glCanvas, filename, hue=0, type='battler'):
         """Draws the character/battler graphic to the static bitmap.
         
         Arguments:
@@ -38,18 +38,20 @@ class Manager(object):
         PILCache = Core.Cache.PILCache
 
         try:
-            if type == 'character': img = PILCache.Character(filename, hue)
-            elif type == 'battler': img = PILCache.Battler(filename, hue)
+            if type == 'character':
+                img = PILCache.Character(filename, hue)
+            elif type == 'battler':
+                img = PILCache.Battler(filename, hue)
         except:
             img = None
             message = str.format('Image \"{}\" cannot be found', filename)
             Kernel.Log(message, '[Cache]', True, False)
         glCanvas.ChangeImage(img)
 
-    #----------------------------------------------------------------------------------
+    # ----------------------------------------------------------------------------------
     @staticmethod
-    def DrawHeaderBitmap( staticBitmap, text, font=None, textcolor=None, 
-            gradient1=None, gradient2=None ):
+    def DrawHeaderBitmap(staticBitmap, text, font=None, textcolor=None,
+                         gradient1=None, gradient2=None):
         """Draws text on a static bitmap control and applies a gradient color fill
         
         Arguments:
@@ -68,13 +70,13 @@ class Manager(object):
         bmpsize = staticBitmap.GetClientSize()
         bmp = wx.EmptyBitmap(bmpsize[0], bmpsize[1])
         memDC.SelectObject(bmp)
-        memDC.Clear()	
+        memDC.Clear()
         if textcolor == None: textcolor = Manager.TEXT_COLOR
         if gradient1 == None: gradient1 = Manager.GRADIENT_LEFT
         if gradient2 == None: gradient2 = Manager.GRADIENT_RIGHT
-        if font == None: font = wx.Font(10, wx.FONTFAMILY_MODERN, wx.FONTSTYLE_NORMAL, 
-                    wx.FONTWEIGHT_NORMAL, faceName='Ethnocentric') # TODO: Change this?
-        memDC.SetFont(font)	
+        if font == None: font = wx.Font(10, wx.FONTFAMILY_MODERN, wx.FONTSTYLE_NORMAL,
+                                        wx.FONTWEIGHT_NORMAL, faceName='Ethnocentric')  # TODO: Change this?
+        memDC.SetFont(font)
         memDC.SetTextForeground(textcolor)
         textsize = memDC.GetTextExtent(text)
         x = (bmpsize[0] - textsize[0]) / 2
@@ -119,7 +121,7 @@ class Manager(object):
 
     #----------------------------------------------------------------------------------
     @staticmethod
-    def FixedIndex( index ):
+    def FixedIndex(index):
         """Returns the correct starting index for game data structure depending on the current format
 
         Arguments:
@@ -129,13 +131,14 @@ class Manager(object):
         An integer formatted to to be compatible with current game data structure
         
         """
-        if Manager.ARC_FORMAT: return index
+        if Manager.ARC_FORMAT:
+            return index
         return index + 1
 
     #----------------------------------------------------------------------------------
     @staticmethod
-    def FillControl(wxContainer, dataSource=[], digits=3, defaults=[], 
-            start=0, fixed=True, clear=True):
+    def FillControl(wxContainer, dataSource=[], digits=3, defaults=[],
+                    start=0, fixed=True, clear=True):
         """Fills the control with items from the data source and numbers them.
 
         Arguments:
@@ -157,13 +160,13 @@ class Manager(object):
             start = Manager.FixedIndex(start)
         defaults.extend([
             ''.join([str(i).zfill(digits), ': ',
-            dataSource[i].name]) for i in xrange(start, len(dataSource))])
+                     dataSource[i].name]) for i in xrange(start, len(dataSource))])
         wxContainer.AppendItems(defaults)
-    
+
     #----------------------------------------------------------------------------------
     @staticmethod
     def FillWithoutNumber(wxContainer, dataSource=[], defaults=[],
-            start=0, fixed=True, clear=True):
+                          start=0, fixed=True, clear=True):
         """Fills the control with items from the data source without numbering.
 
         Arguments:
@@ -187,7 +190,7 @@ class Manager(object):
 
     #----------------------------------------------------------------------------------
     @staticmethod
-    def ChangeDataCapacity(parent, wxList, data, maxAllowed ):
+    def ChangeDataCapacity(parent, wxList, data, maxAllowed):
         """Creates the Change Maximum dialog and changes the capacity of data
         
         Arguments:
@@ -200,13 +203,14 @@ class Manager(object):
         None
         
         """
-        from ChangeMaximum_Dialog import ChangeMaximum_Dialog
+        from Dialogs.ChangeMaximum_Dialog import ChangeMaximum_Dialog
+
         currentMax = wxList.GetCount()
         digits = len(str(maxAllowed))
         dialog = ChangeMaximum_Dialog(parent, currentMax, 1, maxAllowed)
         if dialog.ShowModal() == wx.ID_OK:
             newMax = dialog.spinCtrlMaximum.GetValue()
-            if newMax != currentMax: 
+            if newMax != currentMax:
                 if newMax > currentMax:
                     data.extend([None for i in xrange(newMax - currentMax)])
                     start = currentMax + 1
@@ -237,11 +241,12 @@ class Manager(object):
 
         """
         from AudioPlayer_Panel import AudioPlayer_Panel
-        dialog = wx.Dialog(parent, style = wx.DEFAULT_DIALOG_STYLE|wx.RESIZE_BORDER)
+
+        dialog = wx.Dialog(parent, style=wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER)
         panel = AudioPlayer_Panel(dialog, rpgfile, directory)
         panel.Layout()
         dialog.Fit()
-        
+
         if dialog.ShowModal() == wx.ID_OK:
             return panel.GetAudio()
         dialog.Destroy()
@@ -263,7 +268,7 @@ class Manager(object):
 
         ChooseGraphic_Dialog = Core.Database.Dialogs.ChooseGraphic_Dialog
         ChooseGraphic_Dialog_NoHue = Core.Database.Dialogs.ChooseGraphic_Dialog_NoHue
-        
+
         if hue is not None:
             dlg = ChooseGraphic_Dialog(parent, folder, current, hue)
         else:
@@ -292,8 +297,8 @@ class Manager(object):
         if rpgaudio.name == '':
             label = '(None)'
         else:
-            label = str.format('{0} (V:{1}, P:{2})', 
-                rpgaudio.name, rpgaudio.volume, rpgaudio.pitch)
+            label = str.format('{0} (V:{1}, P:{2})',
+                               rpgaudio.name, rpgaudio.volume, rpgaudio.pitch)
         return label
 
     #----------------------------------------------------------------------------------
@@ -303,10 +308,10 @@ class Manager(object):
         return PyXAL
 
     #----------------------------------------------------------------------------------
-    @staticmethod 
+    @staticmethod
     def QuickPlay(rpgaudio, folder):
 
-        RTPFunctions = Core.Cache.RTPFunctions 
+        RTPFunctions = Core.Cache.RTPFunctions
 
         try:
             path = RTPFunctions.FindAudioFile(os.path.join('Audio', folder), rpgaudio.name)
@@ -318,8 +323,8 @@ class Manager(object):
             player.play()
             player.setPitch(rpgaudio.pitch / 100.0)
             player.setGain(rpgaudio.volume / 100.0)
-            Timer(sound.getDuration(), Manager._DestroyQuickPlay, 
-                [PyXAL, player, sound]).start()
+            Timer(sound.getDuration(), Manager._DestroyQuickPlay,
+                  [PyXAL, player, sound]).start()
         except:
             Kernel.Log('QuickPlay failed to play sound file.', '[PyXAL]', False, True)
 
@@ -348,12 +353,12 @@ class Manager(object):
         """
         index = listbox.GetSelection()
         object.name = name
-        listbox.SetString(index, 
-            ''.join([str(Manager.FixedIndex(index)).zfill(digits), ': ', name]))
+        listbox.SetString(index,
+                          ''.join([str(Manager.FixedIndex(index)).zfill(digits), ': ', name]))
 
     #----------------------------------------------------------------------------------
     @staticmethod
-    def ChangeSkillStates( object, index, value ):
+    def ChangeSkillStates(object, index, value):
         """Changes the skill's add/remove state, and updates the custom check list
 
         Arguments:
@@ -369,22 +374,22 @@ class Manager(object):
             return
         state_id = Manager.FixedIndex(index)
         if value == 0:
-            if state_id in object.minus_state_set: 
+            if state_id in object.minus_state_set:
                 object.minus_state_set.remove(state_id)
-            elif state_id in object.plus_state_set: 
+            elif state_id in object.plus_state_set:
                 object.plus_state_set.remove(state_id)
         if value == 1:
-            if state_id in object.minus_state_set: 
+            if state_id in object.minus_state_set:
                 object.minus_state_set.remove(state_id)
             object.plus_state_set.append(state_id)
         if value == -1:
-            if state_id in object.plus_state_set: 
+            if state_id in object.plus_state_set:
                 object.plus_state_set.remove(state_id)
             object.minus_state_set.append(state_id)
 
     #----------------------------------------------------------------------------------
     @staticmethod
-    def DrawButtonIcon( button, filename, from_resource ):
+    def DrawButtonIcon(button, filename, from_resource):
         """Draws a bitmap on a button from an embedded resource or file
 
         Arguments:
@@ -438,7 +443,7 @@ class Manager(object):
             parameters.extend(['STR', 'DEX', 'AGI', 'INT'])
         objectList = []
         mainsizer = parent.GetSizer()
-        rows = [parameters[i:i+rowcount] for i in xrange(0, len(parameters), rowcount)]
+        rows = [parameters[i:i + rowcount] for i in xrange(0, len(parameters), rowcount)]
         percent = 100 / rowcount
         # Iterate through each of the rows and create the controls
         for row in rows:
@@ -451,31 +456,31 @@ class Manager(object):
             for param in row:
                 if param != None:
                     if count < threshold:
-                        label = wx.StaticText( parent, wx.ID_ANY, param)
+                        label = wx.StaticText(parent, wx.ID_ANY, param)
                     else:
-                        label = wx.StaticText( parent, wx.ID_ANY, param + suffix)
+                        label = wx.StaticText(parent, wx.ID_ANY, param + suffix)
                     count += 1
-                    label.Wrap( -1 )
-                    labelsizer.Add( label, percent, wx.ALL, 5 )
-                    spinctrl = wx.SpinCtrl( parent, -1, '', style=wx.SP_ARROW_KEYS|wx.SP_WRAP)
+                    label.Wrap(-1)
+                    labelsizer.Add(label, percent, wx.ALL, 5)
+                    spinctrl = wx.SpinCtrl(parent, -1, '', style=wx.SP_ARROW_KEYS | wx.SP_WRAP)
                     spinctrl.Bind(wx.EVT_SPINCTRL, Kernel.Protect(event))
                     objectList.append(spinctrl)
-                    spinsizer.Add( spinctrl, percent, wx.BOTTOM|wx.RIGHT|wx.LEFT|wx.EXPAND, 5 )
+                    spinsizer.Add(spinctrl, percent, wx.BOTTOM | wx.RIGHT | wx.LEFT | wx.EXPAND, 5)
                 else:
                     # Create a dummy filler
-                    dummy = wx.StaticText( parent, wx.ID_ANY, '')
+                    dummy = wx.StaticText(parent, wx.ID_ANY, '')
                     dummy.Wrap(-1)
                     labelsizer.Add(dummy, proportion, wx.ALL, 5)
                     spinsizer.Add(dummy, proportion, wx.ALL, 5)
-            mainsizer.Add( labelsizer, 0, wx.EXPAND, 5 )
-            mainsizer.Add( spinsizer, 0, wx.EXPAND, 5 )
+            mainsizer.Add(labelsizer, 0, wx.EXPAND, 5)
+            mainsizer.Add(spinsizer, 0, wx.EXPAND, 5)
         #parent.Layout()
         #parent.SetVirtualSizeHints(-1, -1, parent.GetClientSize().GetWidth() - 32)
         #parent.SetSizer ( mainsizer )
         return objectList
 
     #----------------------------------------------------------------------------------
-    @staticmethod 
+    @staticmethod
     def gcd(num1, num2):
         """ Calculates the greatest common denominator of two numbers
         
@@ -538,7 +543,7 @@ class Manager(object):
         linear = ceil(min + p_range * ((level - initLvl) / l_range))
         if speed == 0: return linear
         if speed < 0:
-          curve = ceil(min + p_range * (((level - initLvl) / l_range) ** 2))
+            curve = ceil(min + p_range * (((level - initLvl) / l_range) ** 2))
         else:
-          curve = ceil(max - p_range * (((fnlLvl - level) / l_range) ** 2))
+            curve = ceil(max - p_range * (((fnlLvl - level) / l_range) ** 2))
         return ((curve * abs(speed) + linear * (10 - abs(speed))) / 10)

@@ -212,7 +212,9 @@ class ARCSplashScreen(AS.AdvancedSplash):
                                    agwStyle=AS.AS_NOTIMEOUT| 
                                    AS.AS_CENTER_ON_SCREEN|
                                    AS.AS_SHADOW_BITMAP,
-                                   shadowcolour=shadow)      
+                                   shadowcolour=shadow)
+        self.fc = None
+        self.frame = None
 
     def Do_Setup(self):
         #load up the editor
@@ -289,7 +291,7 @@ def Run(programDir):
     wx.HelpProvider.Set(provider)
 
     app = ARC_App(False)
-    #start up the app, we wont be comming back till the app is closed
+    #start up the app, we wont be coming back till the app is closed
     app.MainLoop()
     # we want to clean up PyXAL as much as we can, it's dead now anyway as the window it was bound to is gone
     try:

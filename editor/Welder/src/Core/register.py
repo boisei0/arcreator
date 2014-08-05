@@ -306,10 +306,10 @@ class CorePackage(Package):
         #=====================================================================
         self.add_event_hook("CoreEventARCExtendNamespaceOnLoad", RMXP.RGSS1_RPG.extend_namespace,  RMXP.RGSS1_RPG)
         #aprilfools
-        self.add_event_hook("CoreEventAutoSave", Data.A1Fools.auto_save, Data.A1Fools)
-        self.add_event_hook("CoreEventSaveProject", Data.A1Fools.save_now, Data.A1Fools)
-        self.add_event_hook("CoreEventMapEditorMouseLeftDown", Data.A1Fools.mouse_click, Data.A1Fools)
-        self.add_event_hook("CoreEventBrokenDatabasePanel", Data.A1Fools.database_panel_open, Data.A1Fools)
+        # self.add_event_hook("CoreEventAutoSave", Data.A1Fools.auto_save, Data.A1Fools)
+        # self.add_event_hook("CoreEventSaveProject", Data.A1Fools.save_now, Data.A1Fools)
+        # self.add_event_hook("CoreEventMapEditorMouseLeftDown", Data.A1Fools.mouse_click, Data.A1Fools)
+        # self.add_event_hook("CoreEventBrokenDatabasePanel", Data.A1Fools.database_panel_open, Data.A1Fools)
 
 
     def setup_components(self):

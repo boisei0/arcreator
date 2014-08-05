@@ -24,7 +24,7 @@ class ActionManager(object):
     @staticmethod
     def BatchAction(start, end, direction):
         args = [start, end]
-        reverse_flag= False
+        reverse_flag = False
         if args[0] > args[1]:
             args.sort()
             reverse_flag = True
@@ -34,11 +34,11 @@ class ActionManager(object):
         i = 0
         success = False
         for action in actions:
-            if action != None:
+            if action is not None:
                 if direction == 0:
-                   success = action.undo()
+                    success = action.undo()
                 elif direction == 1:
-                   success = action.apply()
+                    success = action.apply()
                 if not success:
                     break
                 i += 1  
@@ -103,4 +103,3 @@ class ActionTemplate(object):
         
     def in_stack(self):
         return self in self._AM._action_stack
-        

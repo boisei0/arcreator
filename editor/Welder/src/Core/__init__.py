@@ -3,7 +3,7 @@ Created on Dec 20, 2010
 
 core plugin module
 '''
-#preimport these so that they are there when the compiled copmponents try 
+# preimport these so that they are there when the compiled components try
 import _ext
 
 
@@ -23,43 +23,36 @@ def late_bind():
     import EventEditor
 
     import Cache
-    
+
     import RPGutil
     import RMXP
+
     RMXP.late_bind()
-    
+
     import EditorGLPanel
 
     import Data
     import Database
     import DatabaseActions
 
-    
-    
     import Dialogs
     import Controls
     import Frames
     import Layouts
     import Menues
 
-    import Icons 
+    import Icons
 
     import PyXAL
 
-    
-
-    
-
     import Project
-    
-    #late binding
+
+    # late binding
     Database.late_bind()
     EventEditor.late_bind()
     MapEditor.late_bind()
-    
 
-
-    #===== Regester the Core ======
+    # ===== Register the Core ======
     import register
 
 

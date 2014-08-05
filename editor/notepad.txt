@@ -1,0 +1,38 @@
+Kernel.py:
+for type_name, type in package.types.iteritems():  # Boisei0: potential breakpoint, package.types is a list
+for sub_type_name, sub_type in type.iteritems():  # Boisei0: potential breakpoint, pacakge.types is a list
+
+Core/Database/Actors_Panel.py
+self.SelectedActor = DataActors[DM.FixedIndex(actorIndex)]  # Boisei0: if empty project is created, DataActors is an empty list -> IndexError
+
+Core/Database/ScriptEditor/Manager.py
+projDir = os.path.dirname(Kernel.GlobalObjects.get_value("CurrentProjectDir"))  # Boisei0: in some cases, this goes wrong => get dirname to fix it
+
+Notes to self (Boisei0):
+Why is actors panel visible when project is newly created, but gives an error when opened from file:
+Traceback (most recent call last):
+  File "/home/boisei0/svn/arcreator/editor/Welder/src/Core/Panels.py", line 306, in paneldispatch
+    self.actorspanel = self.mgr.dispatch_panel("MainActorsPanel", "Main Actors Panel")
+  File "/home/boisei0/svn/arcreator/editor/Welder/src/Core/PanelManager.py", line 101, in dispatch_panel
+    panel_instance = panel(self.parent, *arguments)
+  File "/home/boisei0/svn/arcreator/editor/Welder/src/Core/Database/Actors_Panel.py", line 85, in __init__
+    self.refreshAll()
+  File "/home/boisei0/svn/arcreator/editor/Welder/src/Core/Database/Actors_Panel.py", line 272, in refreshAll
+    self.refreshWeapons()
+  File "/home/boisei0/svn/arcreator/editor/Welder/src/Core/Database/Actors_Panel.py", line 164, in refreshWeapons
+    [''.join([str(DataWeapons[id_].id).zfill(digits), ': ', DataWeapons[id_].name]) for id_ in ids])
+AttributeError: 'str' object has no attribute 'id'
+
+When closing the Actors Panel popup:
+The program 'python2.7' received an X Window System error.
+This probably reflects a bug in the program.
+The error was 'GLXBadDrawable'.
+  (Details: serial 338114 error_code 169 request_code 154 minor_code 11)
+  (Note to programmers: normally, X errors are reported asynchronously;
+   that is, you will receive the error a while after causing it.
+   To debug your program, run it with the --sync command line
+   option to change this behavior. You can then get a meaningful
+   backtrace from your debugger if you break on the gdk_x_error() function.)
+
+No errors on closing the Classes Panel popup, where does it differ with the Actors Panel?
+Same error again on closing the Enemies Panel (no errors on panels in between)

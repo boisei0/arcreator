@@ -1,24 +1,24 @@
 from struct import pack, unpack
 import types
 
+
 class ARC_Dump(object):
-    
     _HEADER = "ARCD"
-    _VERSION = "\x01\x00" # 1.0
-    
+    _VERSION = "\x01\x00"  # 1.0
+
     _TYPES = {
-        "NoneClass" : chr(0x10),
-        "FalseClass" : chr(0x11),
-        "TrueClass" : chr(0x12),
-        "Fixnum" : chr(0x21),
-        "Bignum" : chr(0x22),
-        "Float" : chr(0x23),
-        "String" : chr(0x30),
-        "Array" : chr(0x40),
-        "Hash" : chr(0x41),
-        "Object" : chr(0x00)
-        }
-    
+        "NoneClass": chr(0x10),
+        "FalseClass": chr(0x11),
+        "TrueClass": chr(0x12),
+        "Fixnum": chr(0x21),
+        "Bignum": chr(0x22),
+        "Float": chr(0x23),
+        "String": chr(0x30),
+        "Array": chr(0x40),
+        "Hash": chr(0x41),
+        "Object": chr(0x00)
+    }
+
     _io = None
     _strings = [None]
     _arrays = [None]
@@ -26,9 +26,9 @@ class ARC_Dump(object):
     _objects = [None]
     _class_path_redirects = {}
     _extended_namespace = {}
-    
+
     @staticmethod
-    def dump(io, obj, redirects = {}):
+    def dump(io, obj, redirects={}):
         ARC_Dump._class_path_redirects = redirects
         ARC_Dump._io = io
         ARC_Dump._io.write(ARC_Dump._HEADER)
@@ -42,10 +42,10 @@ class ARC_Dump(object):
                 pass
             raise
         ARC_Dump._reset()
-    
-    
+
+
     @staticmethod
-    def load(io, redirects = {}, extended_namespace={}):
+    def load(io, redirects={}, extended_namespace={}):
         ARC_Dump._class_path_redirects = redirects
         extended_namespace.update(globals())
         ARC_Dump._extended_namespace = dict(extended_namespace)
@@ -53,10 +53,11 @@ class ARC_Dump(object):
         ARC_Dump._io = io
         header = ARC_Dump._io.read(4)
         if ARC_Dump._HEADER != header:
-            raise TypeError("Error: header mismatch! Expected: %s Found: %s" %(repr(ARC_Dump._HEADER), repr(header)))
+            raise TypeError("Error: header mismatch! Expected: %s Found: %s" % (repr(ARC_Dump._HEADER), repr(header)))
         version = ARC_Dump._io.read(2)
         if ARC_Dump._VERSION != version:
-            raise TypeError("Error: version mismatch! Expected: %s Found: %s" %(repr(ARC_Dump._VERSION), repr(version)))
+            raise TypeError(
+                "Error: version mismatch! Expected: %s Found: %s" % (repr(ARC_Dump._VERSION), repr(version)))
         try:
             data = ARC_Dump._load()
         except StandardError:
@@ -67,8 +68,8 @@ class ARC_Dump(object):
             raise
         ARC_Dump._reset()
         return data
-    
-    
+
+
     @staticmethod
     def _reset():
         ARC_Dump._io = None
@@ -78,28 +79,28 @@ class ARC_Dump(object):
         ARC_Dump._objects = [None]
         ARC_Dump._class_path_redirects = {}
         ARC_Dump._extended_namespace = {}
-    
+
 
     @staticmethod
     def __get_class_path(name):
         if ARC_Dump._class_path_redirects.has_key(name):
             return ARC_Dump._class_path_redirects[name]
-        else: 
+        else:
             return name
-    
-    
+
+
     @staticmethod
     def __get_class_object(class_path):
         classes = class_path.split("::")
         if not ARC_Dump._extended_namespace.has_key(classes[0]):
-            raise TypeError("Class not defined: %s" % classes[0])	
+            raise TypeError("Class not defined: %s" % classes[0])
         classe = ARC_Dump._extended_namespace[classes.pop(0)]
         for c in classes:
             if not classe.__dict__.has_key(c):
                 raise TypeError("Class not defined: %s" % c)
             classe = classe.__dict__[c]
         return classe
-    
+
 
     @staticmethod
     def __try_map_equality(data, obj):
@@ -113,7 +114,7 @@ class ARC_Dump(object):
             return True
         ARC_Dump.__dump_int32(index)
         return False
-    
+
 
     @staticmethod
     def __try_map_identity(data, obj):
@@ -128,12 +129,12 @@ class ARC_Dump(object):
             return True
         ARC_Dump.__dump_int32(index)
         return False
-    
+
 
     @staticmethod
     def __map(data, obj):
         data.append(obj)
-    
+
 
     @staticmethod
     def __find_mapped(data, id_num):
@@ -141,24 +142,24 @@ class ARC_Dump(object):
             return data[id_num]
         else:
             return None
-    
-    
+
+
     @staticmethod
     def __dump_int32(obj):
         ARC_Dump._io.write(pack("<I", obj))
-    
+
 
     @staticmethod
     def __load_int32():
         return unpack("<I", ARC_Dump._io.read(4))[0]
-    
-    
+
+
     @staticmethod
     def _dump(obj):
         if obj == None:
             return ARC_Dump._dump_none(obj)
         if obj == False:
-            return ARC_Dump._dump_false(obj) 
+            return ARC_Dump._dump_false(obj)
         if obj == True:
             return ARC_Dump._dump_true(obj)
         if isinstance(obj, types.IntType):
@@ -176,7 +177,7 @@ class ARC_Dump(object):
         if isinstance(obj, object):
             return ARC_Dump._dump_object(obj)
         raise TypeError("Error: %s cannot be dumped!" % obj.__class__)
-    
+
     @staticmethod
     def _load():
         type_id = ARC_Dump._io.read(1)
@@ -200,73 +201,73 @@ class ARC_Dump(object):
             return ARC_Dump._load_hash()
         elif type_id == ARC_Dump._TYPES["Object"]:
             return ARC_Dump._load_object()
-        
+
         raise TypeError("Error: Unknown type 0x%02X detected!" % ord(type_id))
-    
-    
+
+
     @staticmethod
     def _dump_none(obj):
         ARC_Dump._io.write(ARC_Dump._TYPES["NoneClass"])
-    
+
 
     @staticmethod
     def _dump_false(obj):
         ARC_Dump._io.write(ARC_Dump._TYPES["FalseClass"])
-    
+
 
     @staticmethod
     def _dump_true(obj):
         ARC_Dump._io.write(ARC_Dump._TYPES["TrueClass"])
-    
-    
+
+
     @staticmethod
     def _dump_fixnum(obj):
         ARC_Dump._io.write(ARC_Dump._TYPES["Fixnum"])
         ARC_Dump.__dump_int32(obj)
-    
-    
+
+
     @staticmethod
     def _dump_bignum(obj):
         ARC_Dump._io.write(ARC_Dump._TYPES["Bignum"])
-        ARC_Dump.__dump_int32(obj) # our C++ implementation uses a "long" of 32 bit
-    
-    
+        ARC_Dump.__dump_int32(obj)  # our C++ implementation uses a "long" of 32 bit
+
+
     @staticmethod
     def _dump_float(obj):
         ARC_Dump._io.write(ARC_Dump._TYPES["Float"])
         ARC_Dump._io.write(pack("<f", obj))
-    
-    
+
+
     @staticmethod
     def _dump_string(obj):
         ARC_Dump._io.write(ARC_Dump._TYPES["String"])
-        if not ARC_Dump.__try_map_equality(ARC_Dump._strings, obj): # abort if object has already been mapped
+        if not ARC_Dump.__try_map_equality(ARC_Dump._strings, obj):  # abort if object has already been mapped
             return
         ARC_Dump.__dump_int32(len(obj))
         ARC_Dump._io.write(obj)
-    
-    
+
+
     @staticmethod
     def _dump_array(obj):
         ARC_Dump._io.write(ARC_Dump._TYPES["Array"])
-        if not ARC_Dump.__try_map_identity(ARC_Dump._arrays, obj): # abort if object has already been mapped
-            return 
+        if not ARC_Dump.__try_map_identity(ARC_Dump._arrays, obj):  # abort if object has already been mapped
+            return
         ARC_Dump.__dump_int32(len(obj))
         for value in obj:
             ARC_Dump._dump(value)
-    
-    
+
+
     @staticmethod
     def _dump_hash(obj):
         ARC_Dump._io.write(ARC_Dump._TYPES["Hash"])
-        if not ARC_Dump.__try_map_identity(ARC_Dump._hashes, obj): # abort if object has already been mapped
-            return 
+        if not ARC_Dump.__try_map_identity(ARC_Dump._hashes, obj):  # abort if object has already been mapped
+            return
         ARC_Dump.__dump_int32(len(obj))
         for key, value in obj.items():
             ARC_Dump._dump(key)
             ARC_Dump._dump(value)
-        
-    
+
+
     @staticmethod
     def _request_instance_variables(obj):
         if hasattr(obj, "_arc_instance_variables"):
@@ -274,12 +275,12 @@ class ARC_Dump(object):
         result = []
         for key, value in obj.__dict__.items():
             if key[0] != "_":
-                if not isinstance(value, (types.FunctionType, types.ClassType, types.MethodType, 
-                                          types.ModuleType, types.SliceType, types.LambdaType, 
+                if not isinstance(value, (types.FunctionType, types.ClassType, types.MethodType,
+                                          types.ModuleType, types.SliceType, types.LambdaType,
                                           types.GeneratorType)):
                     result.append(key)
         return result
-    
+
     @staticmethod
     def _dump_object(obj):
         ARC_Dump._io.write(ARC_Dump._TYPES["Object"])
@@ -287,8 +288,9 @@ class ARC_Dump(object):
             klass_path = obj._arc_class_path
         else:
             klass_path = "%s::%s" % (obj.__class__.__module__, obj.__class__.__name__)
-        ARC_Dump._dump_string(ARC_Dump.__get_class_path(klass_path)) # first the string path because this is required to load the object
-        if not ARC_Dump.__try_map_identity(ARC_Dump._objects, obj): # abort if object has already been mapped
+        ARC_Dump._dump_string(
+            ARC_Dump.__get_class_path(klass_path))  # first the string path because this is required to load the object
+        if not ARC_Dump.__try_map_identity(ARC_Dump._objects, obj):  # abort if object has already been mapped
             return
         if hasattr(obj, "_arc_dump"):
             data = obj._arc_dump()
@@ -309,39 +311,38 @@ class ARC_Dump(object):
                 except AttributeError:
                     attr = None
                 ARC_Dump._dump(attr)
-        
-    
-    
+
+
     @staticmethod
     def _load_none():
         return None
-    
+
 
     @staticmethod
     def _load_false():
         return False
-    
+
 
     @staticmethod
     def _load_true():
         return True
-    
-    
+
+
     @staticmethod
     def _load_fixnum():
         return ARC_Dump.__load_int32()
-    
-    
+
+
     @staticmethod
     def _load_bignum():
-        return ARC_Dump.__load_int32() # our C++ implementation uses a "long" of 32 bit
-    
-    
+        return ARC_Dump.__load_int32()  # our C++ implementation uses a "long" of 32 bit
+
+
     @staticmethod
     def _load_float():
         return unpack("<f", ARC_Dump._io.read(4))[0]
-    
-    
+
+
     @staticmethod
     def _load_string():
         id_num = ARC_Dump.__load_int32()
@@ -352,8 +353,8 @@ class ARC_Dump(object):
         obj = ARC_Dump._io.read(size)
         ARC_Dump.__map(ARC_Dump._strings, obj)
         return obj
-    
-    
+
+
     @staticmethod
     def _load_array():
         id_num = ARC_Dump.__load_int32()
@@ -366,8 +367,8 @@ class ARC_Dump(object):
         for i in xrange(size):
             obj.append(ARC_Dump._load())
         return obj
-    
-    
+
+
     @staticmethod
     def _load_hash():
         id_num = ARC_Dump.__load_int32()
@@ -382,8 +383,8 @@ class ARC_Dump(object):
             key = ARC_Dump._load()
             obj[key] = ARC_Dump._load()
         return obj
-    
-    
+
+
     @staticmethod
     def _load_object():
         class_path = ARC_Dump._load()

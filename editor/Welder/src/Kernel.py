@@ -25,7 +25,7 @@ import re
 import wx
 import wx.lib.agw.pycollapsiblepane as PCP
 
-#====================================================================================
+# ====================================================================================
 # Global Object Storage
 #====================================================================================
 
@@ -35,22 +35,22 @@ class GlobalObjects(object):
     second value is an object
     '''
 
-    _objects = {"PROJECT":["CORE", None],
-               "ProjectOpen":["CORE", False],
-               "FileHistory":["CORE", None],
-               "CurrentProjectDir":["CORE", ""],
-               "Program_Dir":["CORE", ""],
-               "Title":["CORE", ""],
-               "Mode":["CORE", ""],
-               "Components_config":["CORE", None],
-               "Welder_config":["CORE", None],
-               "WX_config":["CORE", None],
-               "DefaultComponentTemplate":["CORE", None],
-               "ProjectModes":["CORE", {}],
-               "ProjectCreators":["CORE", {}],
-               "PanelManager": ["CORE", None],
-               }
-    
+    _objects = {"PROJECT": ["CORE", None],
+                "ProjectOpen": ["CORE", False],
+                "FileHistory": ["CORE", None],
+                "CurrentProjectDir": ["CORE", ""],
+                "Program_Dir": ["CORE", ""],
+                "Title": ["CORE", ""],
+                "Mode": ["CORE", ""],
+                "Components_config": ["CORE", None],
+                "Welder_config": ["CORE", None],
+                "WX_config": ["CORE", None],
+                "DefaultComponentTemplate": ["CORE", None],
+                "ProjectModes": ["CORE", {}],
+                "ProjectCreators": ["CORE", {}],
+                "PanelManager": ["CORE", None],
+    }
+
     @staticmethod
     def has_key(key):
         if GlobalObjects._objects.has_key(key):
@@ -79,7 +79,7 @@ class GlobalObjects(object):
             return GlobalObjects._objects[key][0]
         else:
             return None
-        
+
     @staticmethod
     def get_value(key):
         '''
@@ -87,7 +87,7 @@ class GlobalObjects(object):
         '''
         if GlobalObjects._objects.has_key(key):
             return GlobalObjects._objects[key][1]
-        
+
     @staticmethod
     def set_value(key, value):
         '''
@@ -125,7 +125,7 @@ class StatusBar(object):
         wx.BeginBusyCursor()
         StatusBar._tasks_running += 1
         if StatusBar._status_bar is not None:
-            StatusBar._status_bar.UpdateProgressBarShow() 
+            StatusBar._status_bar.UpdateProgressBarShow()
             if flag:
                 StatusBar._previousRanges.append(StatusBar._status_bar.GetProgressRange())
                 StatusBar._previousSteps.append(StatusBar._status_bar.GetProgress())
@@ -144,7 +144,7 @@ class StatusBar(object):
         if StatusBar._tasks_running == 0:
             StatusBar.TaskRunning = False
         if StatusBar._status_bar is not None:
-            StatusBar._status_bar.UpdateProgressBarShow() 
+            StatusBar._status_bar.UpdateProgressBarShow()
             if len(StatusBar._previousRanges) > 0:
                 StatusBar._status_bar.SetProgressRange(StatusBar._previousRanges.pop())
             if len(StatusBar._previousSteps) > 0:
@@ -168,7 +168,7 @@ class StatusBar(object):
     @staticmethod
     def SetTaskSteps(steps=10):
         if StatusBar._status_bar is not None:
-            StatusBar._status_bar.UpdateProgressBarShow() 
+            StatusBar._status_bar.UpdateProgressBarShow()
             StatusBar._status_bar.SetProgressRange(steps)
         wx.SafeYield(onlyIfNeeded=True)
 
@@ -180,6 +180,8 @@ class StatusBar(object):
     @staticmethod
     def SetStatusBar(bar):
         StatusBar._status_bar = bar
+
+
 #====================================================================================
 # Kernel classes
 #====================================================================================
@@ -249,12 +251,12 @@ class Manager(object):
         @param package: can be a Package object or a string name of the package
         '''
         default = (name == None and author == None and version == None and
-                       package == None)
+                   package == None)
         if default:
             return (Manager.get_type(type_name, supertype).get_default_component())
         else:
             return (Manager.get_type(type_name, supertype).get_component(name, author, version))
-        
+
     @staticmethod
     def add_package(package):
         '''
@@ -263,7 +265,7 @@ class Manager(object):
         '''
         Manager.packages[(package.name, package.author)] = package
         return (package.name, package.author)
-        
+
     @staticmethod
     def enable_packages(*args):
         '''
@@ -271,10 +273,11 @@ class Manager(object):
         '''
         for package in args:
             Manager.packages[package].register()
-        
+
     @staticmethod
     def set_default_components_from_config(package):
         pass
+
 
 class Component(object):
     '''A data class that holds a registered extension'''
@@ -305,15 +308,18 @@ class Component(object):
         '''called with a[n] Kernel.Dependency object['s] to be added'''
         self.dependencies.extend(args)
 
+
 class Dependency(object):
     '''
     A data class that holds data on a dependency of a component or package
     '''
+
     def __init__(self, type_name=None, name="", author="", version=0):
         self.type = type_name
         self.name = name
         self.author = author
         self.version = version
+
 
 class Event(object):
     '''A data class used as a container for organizing events as their 
@@ -335,7 +341,8 @@ class Event(object):
         '''
         if function != None and callable(function):
             self.registered.append([function, master])
-        else: raise TypeError, "'function' must be a call-able object"
+        else:
+            raise TypeError, "'function' must be a call-able object"
 
     def unregister(self, function=None, master=None):
         '''removes a function from the list of function to be called'''
@@ -352,9 +359,11 @@ class Event(object):
             else:
                 Protect(function[0], True)(*args, **kwargs)
 
+
 class SuperType(object):
     '''a data class that is used for grouping types into larger groups, super 
     types can not be used to group super types'''
+
     def __init__(self, name):
         '''initializes a Kernel.SuperType object
         
@@ -375,9 +384,11 @@ class SuperType(object):
             Log("SuperType '%s' does not have subtype '%s'" % (self.name, type_name))
             return Type("None")
 
+
 class Type(object):
     '''a data class that is used for the grouping of extensions that do the 
     same thing'''
+
     def __init__(self, name):
         '''initializes a Kernel.Type object
         
@@ -460,6 +471,7 @@ class Type(object):
         key = self.get_key(name, author, version, package)
         return self.components[key]
 
+
 class Package(object):
     '''A data class intended to hold information regarding a package and all 
     it's components, intended to be subclassed and used to register more than
@@ -506,7 +518,7 @@ class Package(object):
         for type_obj in types:
             if isinstance(type_obj, (Type, SuperType)):
                 self.types.append(type_obj)
-                
+
     def add_events(self, *events):
         '''
         adds a Kernel.Event object to the event list
@@ -526,7 +538,7 @@ class Package(object):
         '''
         if isinstance(component, Component):
             self.components.append(component)
-            
+
     def add_event_hook(self, name, function, master=None):
         '''
         set up a function to be registered to an event when the package is registered
@@ -540,16 +552,14 @@ class Package(object):
         self.dependencies.extend(args)
 
 
-Manager.packages[(None, None)] = Package("","")
+Manager.packages[(None, None)] = Package("", "")
 
 #====================================================================================
 # Configuration classes (loader and data structure)
 #====================================================================================
 
 class ConfigTemplate(object):
-
     def __init__(self):
-
         self.types = {}
 
     def add_type(self, type_obj):
@@ -580,10 +590,9 @@ class ConfigTemplate(object):
         '''
         return self.types[name]
 
+
 class ConfigType(object):
-
     def __init__(self, name=""):
-
         self.name = name
         self.super = False
         self.default = None
@@ -592,10 +601,9 @@ class ConfigType(object):
         if isinstance(default, ConfigDefault):
             self.default = default
 
+
 class ConfigSuperType(object):
-
     def __init__(self, name=""):
-
         self.name = name
         self.super = True
         self.types = {}
@@ -628,8 +636,8 @@ class ConfigSuperType(object):
         '''
         return self.types[name]
 
-class ConfigDefault(object):
 
+class ConfigDefault(object):
     def __init__(self, name="", author="", version=0, package=None, package_name="", package_author=""):
         self.name = name
         self.author = author
@@ -664,8 +672,8 @@ class ConfigDefault(object):
                 self.package_name = package_name
                 self.package_author = package_author
 
-class KernelConfig(object):
 
+class KernelConfig(object):
     @staticmethod
     def load(template):
         '''
@@ -680,7 +688,8 @@ class KernelConfig(object):
                     result = typeobj.set_default_component(subtype.default.name,
                                                            subtype.default.author,
                                                            subtype.default.version,
-                                                           (subtype.default.package_name, subtype.default.package_author))
+                                                           (subtype.default.package_name,
+                                                            subtype.default.package_author))
             else:
                 typeobj = Manager.get_type(typename)
                 result = typeobj.set_default_component(type_obj.default.name,
@@ -880,7 +889,8 @@ class KernelConfig(object):
                     super_type_config.add_type(type_config)
                     component = sub_type.get_default_component()
                     if component.package is not None:
-                        default = ConfigDefault(component.name, component.author, component.version, component.package, component.package.name, component.package.author)
+                        default = ConfigDefault(component.name, component.author, component.version, component.package,
+                                                component.package.name, component.package.author)
                     else:
                         default = ConfigDefault(component.name, component.author, component.version, component.package)
                     type_config.set_default(default)
@@ -889,13 +899,15 @@ class KernelConfig(object):
                 type_config = ConfigType(type_name)
                 component = type.get_default_component()
                 if component.package is not None:
-                    default = ConfigDefault(component.name, component.author, component.version, component.package, component.package.name, component.package.author)
+                    default = ConfigDefault(component.name, component.author, component.version, component.package,
+                                            component.package.name, component.package.author)
                 else:
                     default = ConfigDefault(component.name, component.author, component.version, component.package)
                 type_config.set_default(default)
                 template.add_type(type_config)
         return template
 
+    @staticmethod
     def BuildFromPackage(package, template=None):
         '''
         builds a template form a Kernel.Package object
@@ -903,44 +915,50 @@ class KernelConfig(object):
         if template == None:
             template = ConfigTemplate()
         if isinstance(package, Package):
-            for type_name, type in package.types.iteritems():
+            for type_name, type in package.types.iteritems():  # Boisei0: potential breakpoint, package.types is a list
                 if isinstance(type, SuperType):
                     super_type_config = ConfigSuperType(type_name)
-                    for sub_type_name, sub_type in type.iteritems():
+                    for sub_type_name, sub_type in type.iteritems():  # Boisei0: potential breakpoint, pacakge.types is a list
                         type_config = ConfigType(sub_type_name)
                         super_type_config.add_type(type_config)
                         component = sub_type.get_default_component()
                         if component.package is not None:
-                            default = ConfigDefault(component.name, component.author, component.version, component.package, component.package.name, component.package.author)
+                            default = ConfigDefault(component.name, component.author, component.version,
+                                                    component.package, component.package.name, component.package.author)
                         else:
-                            default = ConfigDefault(component.name, component.author, component.version, component.package)
+                            default = ConfigDefault(component.name, component.author, component.version,
+                                                    component.package)
                         type_config.set_default(default)
                     template.add_type(super_type_config)
                 elif isinstance(type, Type):
                     type_config = ConfigType(type_name)
                     if component.package is not None:
-                        default = ConfigDefault(component.name, component.author, component.version, component.package, component.package.name, component.package.author)
+                        default = ConfigDefault(component.name, component.author, component.version, component.package,
+                                                component.package.name, component.package.author)
                     else:
                         default = ConfigDefault(component.name, component.author, component.version, component.package)
                     type_config.set_default(default)
                     template.add_type(type_config)
         return template
+
+
 #====================================================================================
 # * Protect (a class to wrap around functions like event handlers to catch errors)
 #====================================================================================
 
 class Protect(object):
-     def __init__(self, fn, exit_on_fail=False):
-         self.fn = fn
-         self.exit_on_fail = exit_on_fail
+    def __init__(self, fn, exit_on_fail=False):
+        self.fn = fn
+        self.exit_on_fail = exit_on_fail
 
-     def __call__(self, *args, **kwargs):
+    def __call__(self, *args, **kwargs):
         try:
             result = self.fn(*args, **kwargs)
             return result
         except StandardError, excp:
             if inspect.ismethod(self.fn):
-                message = "Exception in protected method  '%s' bound to class '%s'" % (self.fn.__name__, self.fn.im_self.__class__.__name__ )
+                message = "Exception in protected method  '%s' bound to class '%s'" % (
+                    self.fn.__name__, self.fn.im_self.__class__.__name__ )
             elif inspect.isfunction(self.fn):
                 message = "Exception in protected function %s" % self.fn.__name__
             else:
@@ -950,25 +968,27 @@ class Protect(object):
                 wx.Exit()
             return None
 
+
 #====================================================================================
 # * Kernel Functions
 #====================================================================================
-def GetDataFolder(): 
-    path = "" 
-    if sys.platform.startswith('win32'): 
-        path = os.path.expandvars("%ALLUSERSPROFILE%") 
-        if platform.release() == "XP": 
-            path += "\\" + os.path.expandvars("%APPDATA%").split("\\", -1)[-1] 
-        path = os.path.join(path, "Chaos Project", "Welder", os.path.expandvars("%USERNAME%")) 
-    else: 
-        if sys.platform.startswith('linux'): 
+def GetDataFolder():
+    path = ""
+    if sys.platform.startswith('win32'):
+        path = os.path.expandvars("%ALLUSERSPROFILE%")
+        if platform.release() == "XP":
+            path += "\\" + os.path.expandvars("%APPDATA%").split("\\", -1)[-1]
+        path = os.path.join(path, "Chaos Project", "Welder", os.path.expandvars("%USERNAME%"))
+    else:
+        if sys.platform.startswith('linux'):
             path = os.path.expanduser(os.path.join("~", ".arc_config"))
-        elif sys.platform.startswith('darwin'): 
+        elif sys.platform.startswith('darwin'):
             path = os.path.expanduser(os.path.join("~", "Library", "Application Support"))
         path = os.path.join(path, "Chaos Project", "Welder")
     if path != "" and (not os.path.exists(path) or not os.path.isdir(path)):
-        os.makedirs(path) 
+        os.makedirs(path)
     return path
+
 
 def GetConfigFolder():
     path = GetDataFolder()
@@ -977,6 +997,7 @@ def GetConfigFolder():
         os.makedirs(path)
     return path
 
+
 def GetLogFolder():
     path = GetDataFolder()
     path = os.path.join(path, "Logs")
@@ -984,12 +1005,14 @@ def GetLogFolder():
         os.makedirs(path)
     return path
 
+
 def GetPluginFolder():
     path = GetDataFolder()
     path = os.path.join(path, "Plugins")
     if not os.path.exists(path) or not os.path.isdir(path):
         os.makedirs(path)
     return path
+
 
 def Log(message=None, prefix="[Kernel]", inform=False, error=False):
     '''
@@ -1017,53 +1040,56 @@ def Log(message=None, prefix="[Kernel]", inform=False, error=False):
         print "There has been an error"
         print traceback.format_exc()
 
-class ErrorDialog (wx.Dialog):
-    
+
+class ErrorDialog(wx.Dialog):
     def __init__(self, prefix, message, error_text):
-        wx.Dialog.__init__ (self, None, -1, "Welder Error " + str(prefix), wx.DefaultPosition, (480, -1), wx.DEFAULT_DIALOG_STYLE)
+        wx.Dialog.__init__(self, None, -1, "Welder Error " + str(prefix), wx.DefaultPosition, (480, -1),
+                           wx.DEFAULT_DIALOG_STYLE)
 
         mainsizer = wx.BoxSizer(wx.VERTICAL)
         message_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        
+
         self.cp = cp = PCP.PyCollapsiblePane(self, label="Details",
-                                             agwStyle= wx.CP_NO_TLW_RESIZE|wx.CP_USE_STATICBOX)
+                                             agwStyle=wx.CP_NO_TLW_RESIZE | wx.CP_USE_STATICBOX)
         self.btn = wx.Button(self.cp, -1, "Details")
         self.cp.SetButton(self.btn)
         self.Bind(wx.EVT_COLLAPSIBLEPANE_CHANGED, self.OnPaneChanged, self.cp)
 
-        self.error_bmp = wx.StaticBitmap(self, wx.ID_ANY, wx.ArtProvider.GetBitmap(wx.ART_ERROR, wx.ART_OTHER), wx.DefaultPosition, wx.DefaultSize, 0)
+        self.error_bmp = wx.StaticBitmap(self, wx.ID_ANY, wx.ArtProvider.GetBitmap(wx.ART_ERROR, wx.ART_OTHER),
+                                         wx.DefaultPosition, wx.DefaultSize, 0)
         message_sizer.Add(self.error_bmp, 0, wx.ALL, 5)
-        
+
         self.message = wx.StaticText(self, wx.ID_ANY, str(message), wx.DefaultPosition, wx.DefaultSize, 0)
         self.message.Wrap(-1)
-        message_sizer.Add(self.message, 1, wx.ALL|wx.EXPAND|wx.ALIGN_CENTER_VERTICAL, 16)
-        
+        message_sizer.Add(self.message, 1, wx.ALL | wx.EXPAND | wx.ALIGN_CENTER_VERTICAL, 16)
+
         mainsizer.Add(message_sizer, 0, wx.EXPAND, 5)
-        
-        self.details_tb = wx.TextCtrl(self.cp.GetPane(), wx.ID_ANY, str(error_text), wx.DefaultPosition, wx.DefaultSize, wx.TE_MULTILINE|wx.TE_READONLY|wx.TE_WORDWRAP )
-       
+
+        self.details_tb = wx.TextCtrl(self.cp.GetPane(), wx.ID_ANY, str(error_text), wx.DefaultPosition, wx.DefaultSize,
+                                      wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_WORDWRAP)
+
         details_sizer = wx.BoxSizer(wx.VERTICAL)
-        details_sizer.Add(self.details_tb, 1, wx.EXPAND|wx.ALL, 2)
+        details_sizer.Add(self.details_tb, 1, wx.EXPAND | wx.ALL, 2)
         self.cp.GetPane().SetSizer(details_sizer)
 
-        mainsizer.Add(self.cp, 1, wx.ALL|wx.EXPAND, 5)
-        
+        mainsizer.Add(self.cp, 1, wx.ALL | wx.EXPAND, 5)
+
         dilg_btn_sizer = wx.StdDialogButtonSizer()
         self.dilg_btn_sizerOK = wx.Button(self, wx.ID_OK)
         dilg_btn_sizer.AddButton(self.dilg_btn_sizerOK)
         dilg_btn_sizer.Realize();
         mainsizer.Add(dilg_btn_sizer, 0, wx.EXPAND, 5)
-        
+
         self.SetSizer(mainsizer)
         self.Layout()
-        
+
         self.Centre(wx.BOTH)
 
     def OnPaneChanged(self, event=None):
 
         # redo the layout
         self.Layout()
-        
+
         # and also change the labels
         if self.cp.IsExpanded():
             self.cp.SetLabel("Details <<")
@@ -1071,8 +1097,9 @@ class ErrorDialog (wx.Dialog):
         else:
             self.cp.SetLabel("Details >>")
             self.btn.SetLabel("Details >>")
-            
+
         self.btn.SetInitialSize()
+
 
 def Inform(title, message, error=False):
     try:
@@ -1081,24 +1108,26 @@ def Inform(title, message, error=False):
                 dlg = ErrorDialog(title, message, traceback.format_exc())
                 dlg.ShowModal()
             else:
-                style = wx.OK|wx.STAY_ON_TOP|wx.ICON_INFORMATION
-                dlg = wx.MessageDialog(None, message, caption="Welder "+ title, style=style)
+                style = wx.OK | wx.STAY_ON_TOP | wx.ICON_INFORMATION
+                dlg = wx.MessageDialog(None, message, caption="Welder " + title, style=style)
                 dlg.ShowModal()
     except StandardError:
         #if this fails lets log it with out an inform
         Log("Inform failed: [Message] %s  [Error?] %s" % (message, error), "[Kernel Inform]", error=True)
 
+
 def parseInt(string):
     hitint = False
     ints = []
     for x in string:
-        
+
         if x.isdigit():
             ints.append(x)
             hitint = True
         else:
             if hitint: break
     return int(''.join(ints))
+
 
 def parseFloat(string):
     hitint = False
@@ -1111,12 +1140,14 @@ def parseFloat(string):
             if hitint: break
     return float(''.join(chars))
 
+
 def escapeHTML(string):
     return (
         string
         .replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
         .replace("'", "&#39;").replace('"', "&quot;")
     )
+
 
 def normConfigPath(path):
     return path.replace('/', os.sep)
