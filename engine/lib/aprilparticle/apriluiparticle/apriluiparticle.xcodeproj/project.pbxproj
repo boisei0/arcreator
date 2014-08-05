@@ -1,0 +1,573 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C9255A10148E30C30019ED23 /* apriluiparticle.h in Headers */ = {isa = PBXBuildFile; fileRef = C9255A0D148E30C30019ED23 /* apriluiparticle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9255A11148E30C30019ED23 /* apriluiparticleExport.h in Headers */ = {isa = PBXBuildFile; fileRef = C9255A0E148E30C30019ED23 /* apriluiparticleExport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9255A15148E30D20019ED23 /* apriluiparticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9255A13148E30D20019ED23 /* apriluiparticle.cpp */; };
+		C9E5230614EE74330062A87F /* aprilparticle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E5230514EE74330062A87F /* aprilparticle.framework */; };
+		C9EF00F6148E321B00B80144 /* april.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F1148E321B00B80144 /* april.framework */; };
+		C9EF00F8148E321B00B80144 /* aprilui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F3148E321B00B80144 /* aprilui.framework */; };
+		C9EF00F9148E321B00B80144 /* gtypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F4148E321B00B80144 /* gtypes.framework */; };
+		C9EF00FA148E321B00B80144 /* hltypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F5148E321B00B80144 /* hltypes.framework */; };
+		C9FB785215010773008B2B48 /* apriluiparticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9255A13148E30D20019ED23 /* apriluiparticle.cpp */; };
+		D157EB641768B1250026F625 /* Particle.h in Headers */ = {isa = PBXBuildFile; fileRef = D157EB621768B1250026F625 /* Particle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D157EB651768B1250026F625 /* ParticleBase.h in Headers */ = {isa = PBXBuildFile; fileRef = D157EB631768B1250026F625 /* ParticleBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D157EB691768B1390026F625 /* apriluiparticleUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = D157EB661768B1390026F625 /* apriluiparticleUtil.h */; };
+		D157EB6A1768B1390026F625 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D157EB671768B1390026F625 /* Particle.cpp */; };
+		D157EB6B1768B1390026F625 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D157EB671768B1390026F625 /* Particle.cpp */; };
+		D157EB6C1768B1390026F625 /* ParticleBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D157EB681768B1390026F625 /* ParticleBase.cpp */; };
+		D157EB6D1768B1390026F625 /* ParticleBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D157EB681768B1390026F625 /* ParticleBase.cpp */; };
+		D1EA92C6175DC8E9008F508D /* apriluiparticleUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C0175DC8E9008F508D /* apriluiparticleUtil.cpp */; };
+		D1EA92C7175DC8E9008F508D /* apriluiparticleUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C0175DC8E9008F508D /* apriluiparticleUtil.cpp */; };
+		D1EA92CA175DC8E9008F508D /* ParticleEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C2175DC8E9008F508D /* ParticleEmitter.cpp */; };
+		D1EA92CB175DC8E9008F508D /* ParticleEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C2175DC8E9008F508D /* ParticleEmitter.cpp */; };
+		D1EA92CC175DC8E9008F508D /* ParticleSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C3175DC8E9008F508D /* ParticleSpace.cpp */; };
+		D1EA92CD175DC8E9008F508D /* ParticleSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C3175DC8E9008F508D /* ParticleSpace.cpp */; };
+		D1EA92D0175DC8E9008F508D /* ParticleSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C5175DC8E9008F508D /* ParticleSystem.cpp */; };
+		D1EA92D1175DC8E9008F508D /* ParticleSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C5175DC8E9008F508D /* ParticleSystem.cpp */; };
+		D1EA92D8175DC8F7008F508D /* ParticleEmitter.h in Headers */ = {isa = PBXBuildFile; fileRef = D1EA92D3175DC8F7008F508D /* ParticleEmitter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1EA92D9175DC8F7008F508D /* ParticleSpace.h in Headers */ = {isa = PBXBuildFile; fileRef = D1EA92D4175DC8F7008F508D /* ParticleSpace.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1EA92DB175DC8F7008F508D /* ParticleSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = D1EA92D6175DC8F7008F508D /* ParticleSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1F27B87177A307000E5C131 /* apriluiparticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9255A13148E30D20019ED23 /* apriluiparticle.cpp */; };
+		D1F27B88177A307000E5C131 /* apriluiparticleUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C0175DC8E9008F508D /* apriluiparticleUtil.cpp */; };
+		D1F27B89177A307000E5C131 /* ParticleEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C2175DC8E9008F508D /* ParticleEmitter.cpp */; };
+		D1F27B8A177A307000E5C131 /* ParticleSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C3175DC8E9008F508D /* ParticleSpace.cpp */; };
+		D1F27B8B177A307000E5C131 /* ParticleSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C5175DC8E9008F508D /* ParticleSystem.cpp */; };
+		D1F27B8C177A307000E5C131 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D157EB671768B1390026F625 /* Particle.cpp */; };
+		D1F27B8D177A307000E5C131 /* ParticleBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D157EB681768B1390026F625 /* ParticleBase.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C9255A0D148E30C30019ED23 /* apriluiparticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = apriluiparticle.h; path = include/apriluiparticle/apriluiparticle.h; sourceTree = SOURCE_ROOT; };
+		C9255A0E148E30C30019ED23 /* apriluiparticleExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = apriluiparticleExport.h; path = include/apriluiparticle/apriluiparticleExport.h; sourceTree = SOURCE_ROOT; };
+		C9255A13148E30D20019ED23 /* apriluiparticle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = apriluiparticle.cpp; path = src/apriluiparticle.cpp; sourceTree = SOURCE_ROOT; };
+		C9DF8457148D03DC00B64799 /* apriluiparticle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = apriluiparticle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9DF8481148D049500B64799 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9E5230514EE74330062A87F /* aprilparticle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = aprilparticle.framework; path = "../../../__build__/pharaoh/Build/Products/Debug-LLVM/aprilparticle.framework"; sourceTree = "<group>"; };
+		C9EF00F1148E321B00B80144 /* april.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = april.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/april.framework"; sourceTree = "<group>"; };
+		C9EF00F3148E321B00B80144 /* aprilui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = aprilui.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/aprilui.framework"; sourceTree = "<group>"; };
+		C9EF00F4148E321B00B80144 /* gtypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gtypes.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/gtypes.framework"; sourceTree = "<group>"; };
+		C9EF00F5148E321B00B80144 /* hltypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = hltypes.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/hltypes.framework"; sourceTree = "<group>"; };
+		C9FB78421501070B008B2B48 /* libapriluiparticle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libapriluiparticle.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9FB78431501070B008B2B48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D1358BBF18D7772500A36FDC /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = iOS.xcconfig; path = xcconfig/iOS.xcconfig; sourceTree = "<group>"; };
+		D1358BC018D7772500A36FDC /* Mac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Mac.xcconfig; path = xcconfig/Mac.xcconfig; sourceTree = "<group>"; };
+		D157EB621768B1250026F625 /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Particle.h; path = include/apriluiparticle/Particle.h; sourceTree = "<group>"; };
+		D157EB631768B1250026F625 /* ParticleBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleBase.h; path = include/apriluiparticle/ParticleBase.h; sourceTree = "<group>"; };
+		D157EB661768B1390026F625 /* apriluiparticleUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = apriluiparticleUtil.h; path = src/apriluiparticleUtil.h; sourceTree = SOURCE_ROOT; };
+		D157EB671768B1390026F625 /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Particle.cpp; path = src/Particle.cpp; sourceTree = SOURCE_ROOT; };
+		D157EB681768B1390026F625 /* ParticleBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleBase.cpp; path = src/ParticleBase.cpp; sourceTree = SOURCE_ROOT; };
+		D1EA92C0175DC8E9008F508D /* apriluiparticleUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = apriluiparticleUtil.cpp; path = src/apriluiparticleUtil.cpp; sourceTree = SOURCE_ROOT; };
+		D1EA92C2175DC8E9008F508D /* ParticleEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleEmitter.cpp; path = src/ParticleEmitter.cpp; sourceTree = SOURCE_ROOT; };
+		D1EA92C3175DC8E9008F508D /* ParticleSpace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleSpace.cpp; path = src/ParticleSpace.cpp; sourceTree = SOURCE_ROOT; };
+		D1EA92C5175DC8E9008F508D /* ParticleSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleSystem.cpp; path = src/ParticleSystem.cpp; sourceTree = SOURCE_ROOT; };
+		D1EA92D3175DC8F7008F508D /* ParticleEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleEmitter.h; path = include/apriluiparticle/ParticleEmitter.h; sourceTree = "<group>"; };
+		D1EA92D4175DC8F7008F508D /* ParticleSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleSpace.h; path = include/apriluiparticle/ParticleSpace.h; sourceTree = "<group>"; };
+		D1EA92D6175DC8F7008F508D /* ParticleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleSystem.h; path = include/apriluiparticle/ParticleSystem.h; sourceTree = "<group>"; };
+		D1F27B96177A307000E5C131 /* libapriluiparticle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libapriluiparticle.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C9DF8453148D03DC00B64799 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9E5230614EE74330062A87F /* aprilparticle.framework in Frameworks */,
+				C9EF00F6148E321B00B80144 /* april.framework in Frameworks */,
+				C9EF00F8148E321B00B80144 /* aprilui.framework in Frameworks */,
+				C9EF00F9148E321B00B80144 /* gtypes.framework in Frameworks */,
+				C9EF00FA148E321B00B80144 /* hltypes.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C9DF844B148D03DB00B64799 = {
+			isa = PBXGroup;
+			children = (
+				D1358BBE18D776F600A36FDC /* config */,
+				C9DF8475148D041D00B64799 /* include */,
+				C9DF8460148D03DC00B64799 /* src */,
+				C9DF8459148D03DC00B64799 /* Frameworks */,
+				C9DF8458148D03DC00B64799 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C9DF8458148D03DC00B64799 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C9DF8457148D03DC00B64799 /* apriluiparticle.framework */,
+				C9FB78421501070B008B2B48 /* libapriluiparticle.a */,
+				D1F27B96177A307000E5C131 /* libapriluiparticle.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C9DF8459148D03DC00B64799 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C9E5230514EE74330062A87F /* aprilparticle.framework */,
+				C9EF00F1148E321B00B80144 /* april.framework */,
+				C9EF00F3148E321B00B80144 /* aprilui.framework */,
+				C9EF00F4148E321B00B80144 /* gtypes.framework */,
+				C9EF00F5148E321B00B80144 /* hltypes.framework */,
+				C9FB78431501070B008B2B48 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C9DF8460148D03DC00B64799 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D157EB661768B1390026F625 /* apriluiparticleUtil.h */,
+				D157EB671768B1390026F625 /* Particle.cpp */,
+				D157EB681768B1390026F625 /* ParticleBase.cpp */,
+				D1EA92C0175DC8E9008F508D /* apriluiparticleUtil.cpp */,
+				D1EA92C2175DC8E9008F508D /* ParticleEmitter.cpp */,
+				D1EA92C3175DC8E9008F508D /* ParticleSpace.cpp */,
+				D1EA92C5175DC8E9008F508D /* ParticleSystem.cpp */,
+				C9255A13148E30D20019ED23 /* apriluiparticle.cpp */,
+			);
+			name = src;
+			path = apriluiparticle;
+			sourceTree = "<group>";
+		};
+		C9DF8475148D041D00B64799 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				D157EB621768B1250026F625 /* Particle.h */,
+				D157EB631768B1250026F625 /* ParticleBase.h */,
+				D1EA92D3175DC8F7008F508D /* ParticleEmitter.h */,
+				D1EA92D4175DC8F7008F508D /* ParticleSpace.h */,
+				D1EA92D6175DC8F7008F508D /* ParticleSystem.h */,
+				C9255A0D148E30C30019ED23 /* apriluiparticle.h */,
+				C9255A0E148E30C30019ED23 /* apriluiparticleExport.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		D1358BBE18D776F600A36FDC /* config */ = {
+			isa = PBXGroup;
+			children = (
+				D1358BBF18D7772500A36FDC /* iOS.xcconfig */,
+				D1358BC018D7772500A36FDC /* Mac.xcconfig */,
+				C9DF8481148D049500B64799 /* Info.plist */,
+			);
+			name = config;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		C9DF8506148D0ADA00B64799 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9255A10148E30C30019ED23 /* apriluiparticle.h in Headers */,
+				C9255A11148E30C30019ED23 /* apriluiparticleExport.h in Headers */,
+				D1EA92D8175DC8F7008F508D /* ParticleEmitter.h in Headers */,
+				D1EA92D9175DC8F7008F508D /* ParticleSpace.h in Headers */,
+				D1EA92DB175DC8F7008F508D /* ParticleSystem.h in Headers */,
+				D157EB641768B1250026F625 /* Particle.h in Headers */,
+				D157EB651768B1250026F625 /* ParticleBase.h in Headers */,
+				D157EB691768B1390026F625 /* apriluiparticleUtil.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		C9DF8456148D03DC00B64799 /* apriluiparticle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "apriluiparticle" */;
+			buildPhases = (
+				C9DF8452148D03DC00B64799 /* Sources */,
+				C9DF8453148D03DC00B64799 /* Frameworks */,
+				C9DF8506148D0ADA00B64799 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = apriluiparticle;
+			productName = apriluiparticle;
+			productReference = C9DF8457148D03DC00B64799 /* apriluiparticle.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C9FB78411501070B008B2B48 /* apriluiparticle (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9FB78501501070B008B2B48 /* Build configuration list for PBXNativeTarget "apriluiparticle (iOS)" */;
+			buildPhases = (
+				C9FB783E1501070B008B2B48 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "apriluiparticle (iOS)";
+			productName = "libapriluiparticle-ios";
+			productReference = C9FB78421501070B008B2B48 /* libapriluiparticle.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		D1F27B85177A307000E5C131 /* apriluiparticle (Mac) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1F27B90177A307000E5C131 /* Build configuration list for PBXNativeTarget "apriluiparticle (Mac)" */;
+			buildPhases = (
+				D1F27B86177A307000E5C131 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "apriluiparticle (Mac)";
+			productName = "libapriluiparticle-ios";
+			productReference = D1F27B96177A307000E5C131 /* libapriluiparticle.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C9DF844D148D03DB00B64799 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
+			buildConfigurationList = C9DF8450148D03DB00B64799 /* Build configuration list for PBXProject "apriluiparticle" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C9DF844B148D03DB00B64799;
+			productRefGroup = C9DF8458148D03DC00B64799 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C9DF8456148D03DC00B64799 /* apriluiparticle */,
+				D1F27B85177A307000E5C131 /* apriluiparticle (Mac) */,
+				C9FB78411501070B008B2B48 /* apriluiparticle (iOS) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C9DF8452148D03DC00B64799 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9255A15148E30D20019ED23 /* apriluiparticle.cpp in Sources */,
+				D1EA92C6175DC8E9008F508D /* apriluiparticleUtil.cpp in Sources */,
+				D1EA92CA175DC8E9008F508D /* ParticleEmitter.cpp in Sources */,
+				D1EA92CC175DC8E9008F508D /* ParticleSpace.cpp in Sources */,
+				D1EA92D0175DC8E9008F508D /* ParticleSystem.cpp in Sources */,
+				D157EB6A1768B1390026F625 /* Particle.cpp in Sources */,
+				D157EB6C1768B1390026F625 /* ParticleBase.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9FB783E1501070B008B2B48 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9FB785215010773008B2B48 /* apriluiparticle.cpp in Sources */,
+				D1EA92C7175DC8E9008F508D /* apriluiparticleUtil.cpp in Sources */,
+				D1EA92CB175DC8E9008F508D /* ParticleEmitter.cpp in Sources */,
+				D1EA92CD175DC8E9008F508D /* ParticleSpace.cpp in Sources */,
+				D1EA92D1175DC8E9008F508D /* ParticleSystem.cpp in Sources */,
+				D157EB6B1768B1390026F625 /* Particle.cpp in Sources */,
+				D157EB6D1768B1390026F625 /* ParticleBase.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1F27B86177A307000E5C131 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1F27B87177A307000E5C131 /* apriluiparticle.cpp in Sources */,
+				D1F27B88177A307000E5C131 /* apriluiparticleUtil.cpp in Sources */,
+				D1F27B89177A307000E5C131 /* ParticleEmitter.cpp in Sources */,
+				D1F27B8A177A307000E5C131 /* ParticleSpace.cpp in Sources */,
+				D1F27B8B177A307000E5C131 /* ParticleSystem.cpp in Sources */,
+				D1F27B8C177A307000E5C131 /* Particle.cpp in Sources */,
+				D1F27B8D177A307000E5C131 /* ParticleBase.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C9DF8483148D04FE00B64799 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../../hltypes/include",
+					"${SRCROOT}/../../gtypes/include",
+					"${SRCROOT}/../../hltypes/hlxml/include",
+					"${SRCROOT}/../../april/include",
+					"${SRCROOT}/../../aprilui/include",
+					"${SRCROOT}/include",
+					"${SRCROOT}/../include",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		C9DF8484148D04FE00B64799 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = _DEBUG;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				INFOPLIST_FILE = Info.plist;
+				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
+				PRODUCT_NAME = apriluiparticle;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		C9DF8485148D050500B64799 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../../hltypes/include",
+					"${SRCROOT}/../../gtypes/include",
+					"${SRCROOT}/../../hltypes/hlxml/include",
+					"${SRCROOT}/../../april/include",
+					"${SRCROOT}/../../aprilui/include",
+					"${SRCROOT}/include",
+					"${SRCROOT}/../include",
+				);
+			};
+			name = Release;
+		};
+		C9DF8486148D050500B64799 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				INFOPLIST_FILE = Info.plist;
+				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
+				PRODUCT_NAME = apriluiparticle;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		C9DF8489148D051B00B64799 /* App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../../hltypes/include",
+					"${SRCROOT}/../../gtypes/include",
+					"${SRCROOT}/../../hltypes/hlxml/include",
+					"${SRCROOT}/../../april/include",
+					"${SRCROOT}/../../aprilui/include",
+					"${SRCROOT}/include",
+					"${SRCROOT}/../include",
+				);
+			};
+			name = "App Store";
+		};
+		C9DF848A148D051B00B64799 /* App Store */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				INFOPLIST_FILE = Info.plist;
+				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
+				PRODUCT_NAME = apriluiparticle;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = "App Store";
+		};
+		C9FB784C1501070B008B2B48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BBF18D7772500A36FDC /* iOS.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_IOS,
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				PRODUCT_NAME = apriluiparticle;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		C9FB784E1501070B008B2B48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BBF18D7772500A36FDC /* iOS.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_IOS,
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				PRODUCT_NAME = apriluiparticle;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		C9FB784F1501070B008B2B48 /* App Store */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BBF18D7772500A36FDC /* iOS.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_IOS,
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				PRODUCT_NAME = apriluiparticle;
+				SKIP_INSTALL = YES;
+			};
+			name = "App Store";
+		};
+		D1F27B92177A307000E5C131 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_MAC,
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				PRODUCT_NAME = apriluiparticle;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D1F27B94177A307000E5C131 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_MAC,
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				PRODUCT_NAME = apriluiparticle;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		D1F27B95177A307000E5C131 /* App Store */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_MAC,
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				PRODUCT_NAME = apriluiparticle;
+				SKIP_INSTALL = YES;
+			};
+			name = "App Store";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C9DF8450148D03DB00B64799 /* Build configuration list for PBXProject "apriluiparticle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9DF8483148D04FE00B64799 /* Debug */,
+				C9DF8485148D050500B64799 /* Release */,
+				C9DF8489148D051B00B64799 /* App Store */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "apriluiparticle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9DF8484148D04FE00B64799 /* Debug */,
+				C9DF8486148D050500B64799 /* Release */,
+				C9DF848A148D051B00B64799 /* App Store */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C9FB78501501070B008B2B48 /* Build configuration list for PBXNativeTarget "apriluiparticle (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9FB784C1501070B008B2B48 /* Debug */,
+				C9FB784E1501070B008B2B48 /* Release */,
+				C9FB784F1501070B008B2B48 /* App Store */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D1F27B90177A307000E5C131 /* Build configuration list for PBXNativeTarget "apriluiparticle (Mac)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1F27B92177A307000E5C131 /* Debug */,
+				D1F27B94177A307000E5C131 /* Release */,
+				D1F27B95177A307000E5C131 /* App Store */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C9DF844D148D03DB00B64799 /* Project object */;
+}

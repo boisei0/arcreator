@@ -1,0 +1,32 @@
+/// @file
+/// @version 2.1
+/// 
+/// @section LICENSE
+/// 
+/// This program is free software; you can redistribute it and/or modify it under
+/// the terms of the BSD license: http://opensource.org/licenses/BSD-3-Clause
+/// 
+/// @section DESCRIPTION
+/// 
+/// Defines utility functions used internally.
+
+#ifndef APRILUIPARTICLE_UTIL_H
+#define APRILUIPARTICLE_UTIL_H
+
+#include <gtypes/Vector2.h>
+#include <hltypes/hstring.h>
+
+#include "apriluiparticleExport.h"
+
+namespace aprilparticle
+{
+	class Emitter;
+}
+
+namespace apriluiparticle
+{
+	void resizeEmitter(gvec2 size, aprilparticle::Emitter* emitter);
+	void resizeEmitters(gvec2 size, harray<aprilparticle::Emitter*> emitters);
+	
+}
+#endif

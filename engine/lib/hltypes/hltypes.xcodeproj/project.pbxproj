@@ -1,0 +1,652 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7F340ED0120AE72900F01926 /* hmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F340ECF120AE72900F01926 /* hmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7F42F69911EB0B9500B1C1DF /* hfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F42F69611EB0B9400B1C1DF /* hfile.cpp */; };
+		7F42F69A11EB0B9500B1C1DF /* hstring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F42F69711EB0B9500B1C1DF /* hstring.cpp */; };
+		7F42F6A211EB0BAA00B1C1DF /* harray.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F42F69D11EB0BAA00B1C1DF /* harray.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7F42F6A311EB0BAA00B1C1DF /* hfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F42F69E11EB0BAA00B1C1DF /* hfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7F42F6A411EB0BAA00B1C1DF /* hltypesExport.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F42F69F11EB0BAA00B1C1DF /* hltypesExport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7F42F6A511EB0BAA00B1C1DF /* hstring.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F42F6A011EB0BAA00B1C1DF /* hstring.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7F469C7412088BEE009781BB /* exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F469C7212088BEE009781BB /* exception.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7F469C7812088C00009781BB /* exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F469C7612088C00009781BB /* exception.cpp */; };
+		7F79A510125CB34400B22DA2 /* hdir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F79A50F125CB34400B22DA2 /* hdir.cpp */; };
+		7F79A512125CB34F00B22DA2 /* hdir.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F79A511125CB34F00B22DA2 /* hdir.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7FAB23551291377B0035EDF5 /* hthread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FAB23531291377B0035EDF5 /* hthread.cpp */; };
+		7FAB23561291377B0035EDF5 /* hmutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FAB23541291377B0035EDF5 /* hmutex.cpp */; };
+		7FAB235A1291378A0035EDF5 /* hmutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FAB23581291378A0035EDF5 /* hmutex.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C965F5BB14F3897B009F0EE5 /* hresource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C965F5BA14F3897B009F0EE5 /* hresource.cpp */; };
+		C965F5BC14F3897B009F0EE5 /* hresource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C965F5BA14F3897B009F0EE5 /* hresource.cpp */; };
+		C965F5BE14F38988009F0EE5 /* hresource.h in Headers */ = {isa = PBXBuildFile; fileRef = C965F5BD14F38988009F0EE5 /* hresource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C981D01C14FFC5FE0032F321 /* hfbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D01B14FFC5FE0032F321 /* hfbase.cpp */; };
+		C981D01D14FFC5FE0032F321 /* hfbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D01B14FFC5FE0032F321 /* hfbase.cpp */; };
+		C981D02014FFC6270032F321 /* hfbase.h in Headers */ = {isa = PBXBuildFile; fileRef = C981D01F14FFC6270032F321 /* hfbase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9F9313914DA87C300954F90 /* hltypesUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = C9F9313814DA87C300954F90 /* hltypesUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9F9314014DA88B400954F90 /* hltypesUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F9313F14DA88B400954F90 /* hltypesUtil.cpp */; };
+		C9F9314114DA88B400954F90 /* hltypesUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F9313F14DA88B400954F90 /* hltypesUtil.cpp */; };
+		D115F7C214AD4FA600C78558 /* hsbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D115F7C014AD4FA600C78558 /* hsbase.cpp */; };
+		D115F7C314AD4FA600C78558 /* hstream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D115F7C114AD4FA600C78558 /* hstream.cpp */; };
+		D115F7C714AD4FB400C78558 /* hsbase.h in Headers */ = {isa = PBXBuildFile; fileRef = D115F7C514AD4FB400C78558 /* hsbase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D115F7C814AD4FB400C78558 /* hstream.h in Headers */ = {isa = PBXBuildFile; fileRef = D115F7C614AD4FB400C78558 /* hstream.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D122D39A14AD51F200F2886F /* hsbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D115F7C014AD4FA600C78558 /* hsbase.cpp */; };
+		D122D39B14AD51F200F2886F /* hstream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D115F7C114AD4FA600C78558 /* hstream.cpp */; };
+		D1981C14140F7F5C0057C3AF /* hthread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FAB23531291377B0035EDF5 /* hthread.cpp */; };
+		D1981C15140F7F5C0057C3AF /* hmutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FAB23541291377B0035EDF5 /* hmutex.cpp */; };
+		D1981C16140F7F5C0057C3AF /* hdir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F79A50F125CB34400B22DA2 /* hdir.cpp */; };
+		D1981C17140F7F5C0057C3AF /* exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F469C7612088C00009781BB /* exception.cpp */; };
+		D1981C18140F7F5C0057C3AF /* hfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F42F69611EB0B9400B1C1DF /* hfile.cpp */; };
+		D1981C19140F7F5C0057C3AF /* hstring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F42F69711EB0B9500B1C1DF /* hstring.cpp */; };
+		D1BAE0F3183B91D100BC2434 /* hdbase.h in Headers */ = {isa = PBXBuildFile; fileRef = D1BAE0F1183B91D100BC2434 /* hdbase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1BAE0F4183B91D100BC2434 /* hrdir.h in Headers */ = {isa = PBXBuildFile; fileRef = D1BAE0F2183B91D100BC2434 /* hrdir.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1BAE0F8183B91FC00BC2434 /* hdbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1BAE0F5183B91FC00BC2434 /* hdbase.cpp */; };
+		D1BAE0F9183B91FC00BC2434 /* hdbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1BAE0F5183B91FC00BC2434 /* hdbase.cpp */; };
+		D1BAE0FA183B91FC00BC2434 /* hdbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1BAE0F5183B91FC00BC2434 /* hdbase.cpp */; };
+		D1BAE0FB183B91FC00BC2434 /* hrdir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1BAE0F6183B91FC00BC2434 /* hrdir.cpp */; };
+		D1BAE0FC183B91FC00BC2434 /* hrdir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1BAE0F6183B91FC00BC2434 /* hrdir.cpp */; };
+		D1BAE0FD183B91FC00BC2434 /* hrdir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1BAE0F6183B91FC00BC2434 /* hrdir.cpp */; };
+		D1BAE0FE183B91FC00BC2434 /* zipaccess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1BAE0F7183B91FC00BC2434 /* zipaccess.cpp */; };
+		D1BAE0FF183B91FC00BC2434 /* zipaccess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1BAE0F7183B91FC00BC2434 /* zipaccess.cpp */; };
+		D1BAE100183B91FC00BC2434 /* zipaccess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1BAE0F7183B91FC00BC2434 /* zipaccess.cpp */; };
+		D1BAE102183B920700BC2434 /* msvc_dirent.h in Headers */ = {isa = PBXBuildFile; fileRef = D1BAE101183B920700BC2434 /* msvc_dirent.h */; };
+		D1BAE104183B921400BC2434 /* zipaccess.h in Headers */ = {isa = PBXBuildFile; fileRef = D1BAE103183B921400BC2434 /* zipaccess.h */; };
+		D1D34301186241AB0040AA7F /* hlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1E909E61636911B00EB27EE /* hlog.cpp */; };
+		D1D34302186241AF0040AA7F /* Mac_platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = D1E909F6163693BC00EB27EE /* Mac_platform.mm */; };
+		D1D34304186250360040AA7F /* Apple_platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = D1D34303186250360040AA7F /* Apple_platform.mm */; };
+		D1D34305186250360040AA7F /* Apple_platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = D1D34303186250360040AA7F /* Apple_platform.mm */; };
+		D1D34306186250360040AA7F /* Apple_platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = D1D34303186250360040AA7F /* Apple_platform.mm */; };
+		D1DB1C20162854920013C0E5 /* hplatform.h in Headers */ = {isa = PBXBuildFile; fileRef = D1DB1C1F162854920013C0E5 /* hplatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1E1DD59140E579C00499A97 /* hdeque.h in Headers */ = {isa = PBXBuildFile; fileRef = D1E1DD56140E579C00499A97 /* hdeque.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1E1DD5A140E579D00499A97 /* hlist.h in Headers */ = {isa = PBXBuildFile; fileRef = D1E1DD57140E579C00499A97 /* hlist.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1E1DD5B140E579D00499A97 /* hthread.h in Headers */ = {isa = PBXBuildFile; fileRef = D1E1DD58140E579C00499A97 /* hthread.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1E909E71636911B00EB27EE /* hlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1E909E61636911B00EB27EE /* hlog.cpp */; };
+		D1E909EB1636912400EB27EE /* hlog.h in Headers */ = {isa = PBXBuildFile; fileRef = D1E909EA1636912400EB27EE /* hlog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1E909F5163693B600EB27EE /* iOS_platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = D1E909F4163693B600EB27EE /* iOS_platform.mm */; };
+		D1E909F7163693BC00EB27EE /* Mac_platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = D1E909F6163693BC00EB27EE /* Mac_platform.mm */; };
+		D1E909FC163694F300EB27EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E909FB163694F300EB27EE /* Foundation.framework */; };
+		D1F27A8C177A2D0E00E5C131 /* hsbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D115F7C014AD4FA600C78558 /* hsbase.cpp */; };
+		D1F27A8D177A2D0E00E5C131 /* hstream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D115F7C114AD4FA600C78558 /* hstream.cpp */; };
+		D1F27A8E177A2D0E00E5C131 /* hthread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FAB23531291377B0035EDF5 /* hthread.cpp */; };
+		D1F27A8F177A2D0E00E5C131 /* hmutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FAB23541291377B0035EDF5 /* hmutex.cpp */; };
+		D1F27A90177A2D0E00E5C131 /* hdir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F79A50F125CB34400B22DA2 /* hdir.cpp */; };
+		D1F27A91177A2D0E00E5C131 /* exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F469C7612088C00009781BB /* exception.cpp */; };
+		D1F27A92177A2D0E00E5C131 /* hfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F42F69611EB0B9400B1C1DF /* hfile.cpp */; };
+		D1F27A93177A2D0E00E5C131 /* hstring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F42F69711EB0B9500B1C1DF /* hstring.cpp */; };
+		D1F27A94177A2D0E00E5C131 /* hltypesUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F9313F14DA88B400954F90 /* hltypesUtil.cpp */; };
+		D1F27A95177A2D0E00E5C131 /* hresource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C965F5BA14F3897B009F0EE5 /* hresource.cpp */; };
+		D1F27A96177A2D0E00E5C131 /* hfbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D01B14FFC5FE0032F321 /* hfbase.cpp */; };
+		D1F27A97177A2D0E00E5C131 /* hlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1E909E61636911B00EB27EE /* hlog.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7F340ECF120AE72900F01926 /* hmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hmap.h; path = include/hltypes/hmap.h; sourceTree = "<group>"; };
+		7F42F69611EB0B9400B1C1DF /* hfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hfile.cpp; path = src/hfile.cpp; sourceTree = SOURCE_ROOT; };
+		7F42F69711EB0B9500B1C1DF /* hstring.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hstring.cpp; path = src/hstring.cpp; sourceTree = SOURCE_ROOT; };
+		7F42F69D11EB0BAA00B1C1DF /* harray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = harray.h; path = include/hltypes/harray.h; sourceTree = SOURCE_ROOT; };
+		7F42F69E11EB0BAA00B1C1DF /* hfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hfile.h; path = include/hltypes/hfile.h; sourceTree = SOURCE_ROOT; };
+		7F42F69F11EB0BAA00B1C1DF /* hltypesExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hltypesExport.h; path = include/hltypes/hltypesExport.h; sourceTree = SOURCE_ROOT; };
+		7F42F6A011EB0BAA00B1C1DF /* hstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hstring.h; path = include/hltypes/hstring.h; sourceTree = SOURCE_ROOT; };
+		7F42F71411EB111E00B1C1DF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F469C7212088BEE009781BB /* exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = exception.h; path = include/hltypes/exception.h; sourceTree = "<group>"; };
+		7F469C7612088C00009781BB /* exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = exception.cpp; path = src/exception.cpp; sourceTree = "<group>"; };
+		7F79A50F125CB34400B22DA2 /* hdir.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hdir.cpp; path = src/hdir.cpp; sourceTree = "<group>"; };
+		7F79A511125CB34F00B22DA2 /* hdir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hdir.h; path = include/hltypes/hdir.h; sourceTree = "<group>"; };
+		7FAB23531291377B0035EDF5 /* hthread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hthread.cpp; path = src/hthread.cpp; sourceTree = "<group>"; };
+		7FAB23541291377B0035EDF5 /* hmutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hmutex.cpp; path = src/hmutex.cpp; sourceTree = "<group>"; };
+		7FAB23581291378A0035EDF5 /* hmutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hmutex.h; path = include/hltypes/hmutex.h; sourceTree = "<group>"; };
+		8DC2EF5B0486A6940098B216 /* hltypes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = hltypes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C965F5BA14F3897B009F0EE5 /* hresource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hresource.cpp; path = src/hresource.cpp; sourceTree = "<group>"; };
+		C965F5BD14F38988009F0EE5 /* hresource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hresource.h; path = include/hltypes/hresource.h; sourceTree = "<group>"; };
+		C981D01B14FFC5FE0032F321 /* hfbase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hfbase.cpp; path = src/hfbase.cpp; sourceTree = "<group>"; };
+		C981D01F14FFC6270032F321 /* hfbase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hfbase.h; path = include/hltypes/hfbase.h; sourceTree = "<group>"; };
+		C9F9313814DA87C300954F90 /* hltypesUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hltypesUtil.h; path = include/hltypes/hltypesUtil.h; sourceTree = "<group>"; };
+		C9F9313F14DA88B400954F90 /* hltypesUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hltypesUtil.cpp; path = src/hltypesUtil.cpp; sourceTree = "<group>"; };
+		D115F7C014AD4FA600C78558 /* hsbase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hsbase.cpp; path = src/hsbase.cpp; sourceTree = "<group>"; };
+		D115F7C114AD4FA600C78558 /* hstream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hstream.cpp; path = src/hstream.cpp; sourceTree = "<group>"; };
+		D115F7C514AD4FB400C78558 /* hsbase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hsbase.h; path = include/hltypes/hsbase.h; sourceTree = "<group>"; };
+		D115F7C614AD4FB400C78558 /* hstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hstream.h; path = include/hltypes/hstream.h; sourceTree = "<group>"; };
+		D1522F3E140F7A310012F290 /* libhltypes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libhltypes.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1681B7218D7612F0088FC68 /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = iOS.xcconfig; path = xcconfig/iOS.xcconfig; sourceTree = "<group>"; };
+		D1681B7318D7612F0088FC68 /* Mac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Mac.xcconfig; path = xcconfig/Mac.xcconfig; sourceTree = "<group>"; };
+		D1BAE0F1183B91D100BC2434 /* hdbase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hdbase.h; path = include/hltypes/hdbase.h; sourceTree = "<group>"; };
+		D1BAE0F2183B91D100BC2434 /* hrdir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hrdir.h; path = include/hltypes/hrdir.h; sourceTree = "<group>"; };
+		D1BAE0F5183B91FC00BC2434 /* hdbase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hdbase.cpp; path = src/hdbase.cpp; sourceTree = "<group>"; };
+		D1BAE0F6183B91FC00BC2434 /* hrdir.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hrdir.cpp; path = src/hrdir.cpp; sourceTree = "<group>"; };
+		D1BAE0F7183B91FC00BC2434 /* zipaccess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = zipaccess.cpp; path = src/zipaccess.cpp; sourceTree = "<group>"; };
+		D1BAE101183B920700BC2434 /* msvc_dirent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = msvc_dirent.h; path = src/msvc_dirent.h; sourceTree = "<group>"; };
+		D1BAE103183B921400BC2434 /* zipaccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zipaccess.h; path = src/zipaccess.h; sourceTree = "<group>"; };
+		D1D34303186250360040AA7F /* Apple_platform.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Apple_platform.mm; path = src/platform/Apple_platform.mm; sourceTree = "<group>"; };
+		D1DB1C1F162854920013C0E5 /* hplatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hplatform.h; path = include/hltypes/hplatform.h; sourceTree = "<group>"; };
+		D1E1DD56140E579C00499A97 /* hdeque.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hdeque.h; path = include/hltypes/hdeque.h; sourceTree = "<group>"; };
+		D1E1DD57140E579C00499A97 /* hlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hlist.h; path = include/hltypes/hlist.h; sourceTree = "<group>"; };
+		D1E1DD58140E579C00499A97 /* hthread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hthread.h; path = include/hltypes/hthread.h; sourceTree = "<group>"; };
+		D1E909E61636911B00EB27EE /* hlog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hlog.cpp; path = src/hlog.cpp; sourceTree = "<group>"; };
+		D1E909EA1636912400EB27EE /* hlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hlog.h; path = include/hltypes/hlog.h; sourceTree = "<group>"; };
+		D1E909F1163693AF00EB27EE /* Android_platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Android_platform.cpp; path = src/platform/Android_platform.cpp; sourceTree = "<group>"; };
+		D1E909F2163693AF00EB27EE /* Win32_platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Win32_platform.cpp; path = src/platform/Win32_platform.cpp; sourceTree = "<group>"; };
+		D1E909F3163693AF00EB27EE /* WinRT_platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = WinRT_platform.cpp; path = src/platform/WinRT_platform.cpp; sourceTree = "<group>"; };
+		D1E909F4163693B600EB27EE /* iOS_platform.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iOS_platform.mm; path = src/platform/iOS_platform.mm; sourceTree = "<group>"; };
+		D1E909F6163693BC00EB27EE /* Mac_platform.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Mac_platform.mm; path = src/platform/Mac_platform.mm; sourceTree = "<group>"; };
+		D1E909FB163694F300EB27EE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D1F27A9F177A2D0E00E5C131 /* libhltypes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libhltypes.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D1E909FA163694EC00EB27EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1E909FC163694F300EB27EE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5B0486A6940098B216 /* hltypes.framework */,
+				D1522F3E140F7A310012F290 /* libhltypes.a */,
+				D1F27A9F177A2D0E00E5C131 /* libhltypes.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* libhltypes */ = {
+			isa = PBXGroup;
+			children = (
+				D1681B7818D7627D0088FC68 /* config */,
+				7F42F69C11EB0B9A00B1C1DF /* include */,
+				7F42F69511EB0B8500B1C1DF /* src */,
+				D1E909FD163694FE00EB27EE /* Frameworks */,
+				034768DFFF38A50411DB9C8B /* Products */,
+			);
+			name = libhltypes;
+			sourceTree = "<group>";
+		};
+		7F42F69511EB0B8500B1C1DF /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D1E909F0163693A500EB27EE /* platform */,
+				D1BAE103183B921400BC2434 /* zipaccess.h */,
+				D1BAE101183B920700BC2434 /* msvc_dirent.h */,
+				D1BAE0F5183B91FC00BC2434 /* hdbase.cpp */,
+				D1BAE0F6183B91FC00BC2434 /* hrdir.cpp */,
+				D1BAE0F7183B91FC00BC2434 /* zipaccess.cpp */,
+				D1E909E61636911B00EB27EE /* hlog.cpp */,
+				D115F7C014AD4FA600C78558 /* hsbase.cpp */,
+				D115F7C114AD4FA600C78558 /* hstream.cpp */,
+				7FAB23531291377B0035EDF5 /* hthread.cpp */,
+				7FAB23541291377B0035EDF5 /* hmutex.cpp */,
+				C981D01B14FFC5FE0032F321 /* hfbase.cpp */,
+				C965F5BA14F3897B009F0EE5 /* hresource.cpp */,
+				7F79A50F125CB34400B22DA2 /* hdir.cpp */,
+				7F42F69611EB0B9400B1C1DF /* hfile.cpp */,
+				7F469C7612088C00009781BB /* exception.cpp */,
+				7F42F69711EB0B9500B1C1DF /* hstring.cpp */,
+				C9F9313F14DA88B400954F90 /* hltypesUtil.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		7F42F69C11EB0B9A00B1C1DF /* include */ = {
+			isa = PBXGroup;
+			children = (
+				D1BAE0F1183B91D100BC2434 /* hdbase.h */,
+				D1BAE0F2183B91D100BC2434 /* hrdir.h */,
+				D1E909EA1636912400EB27EE /* hlog.h */,
+				D1DB1C1F162854920013C0E5 /* hplatform.h */,
+				C981D01F14FFC6270032F321 /* hfbase.h */,
+				D115F7C514AD4FB400C78558 /* hsbase.h */,
+				D115F7C614AD4FB400C78558 /* hstream.h */,
+				D1E1DD56140E579C00499A97 /* hdeque.h */,
+				D1E1DD57140E579C00499A97 /* hlist.h */,
+				D1E1DD58140E579C00499A97 /* hthread.h */,
+				7FAB23581291378A0035EDF5 /* hmutex.h */,
+				7F79A511125CB34F00B22DA2 /* hdir.h */,
+				7F340ECF120AE72900F01926 /* hmap.h */,
+				7F469C7212088BEE009781BB /* exception.h */,
+				7F42F69D11EB0BAA00B1C1DF /* harray.h */,
+				7F42F69E11EB0BAA00B1C1DF /* hfile.h */,
+				C965F5BD14F38988009F0EE5 /* hresource.h */,
+				7F42F69F11EB0BAA00B1C1DF /* hltypesExport.h */,
+				7F42F6A011EB0BAA00B1C1DF /* hstring.h */,
+				C9F9313814DA87C300954F90 /* hltypesUtil.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		D1681B7818D7627D0088FC68 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				7F42F71411EB111E00B1C1DF /* Info.plist */,
+				D1681B7218D7612F0088FC68 /* iOS.xcconfig */,
+				D1681B7318D7612F0088FC68 /* Mac.xcconfig */,
+			);
+			name = config;
+			sourceTree = "<group>";
+		};
+		D1E909F0163693A500EB27EE /* platform */ = {
+			isa = PBXGroup;
+			children = (
+				D1D34303186250360040AA7F /* Apple_platform.mm */,
+				D1E909F6163693BC00EB27EE /* Mac_platform.mm */,
+				D1E909F4163693B600EB27EE /* iOS_platform.mm */,
+				D1E909F1163693AF00EB27EE /* Android_platform.cpp */,
+				D1E909F2163693AF00EB27EE /* Win32_platform.cpp */,
+				D1E909F3163693AF00EB27EE /* WinRT_platform.cpp */,
+			);
+			name = platform;
+			sourceTree = "<group>";
+		};
+		D1E909FD163694FE00EB27EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D1E909FB163694F300EB27EE /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8DC2EF500486A6940098B216 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1E1DD59140E579C00499A97 /* hdeque.h in Headers */,
+				D1E1DD5A140E579D00499A97 /* hlist.h in Headers */,
+				D1BAE102183B920700BC2434 /* msvc_dirent.h in Headers */,
+				D1E909EB1636912400EB27EE /* hlog.h in Headers */,
+				D1E1DD5B140E579D00499A97 /* hthread.h in Headers */,
+				7F42F6A211EB0BAA00B1C1DF /* harray.h in Headers */,
+				7F42F6A311EB0BAA00B1C1DF /* hfile.h in Headers */,
+				C965F5BE14F38988009F0EE5 /* hresource.h in Headers */,
+				7F42F6A411EB0BAA00B1C1DF /* hltypesExport.h in Headers */,
+				7F42F6A511EB0BAA00B1C1DF /* hstring.h in Headers */,
+				C9F9313914DA87C300954F90 /* hltypesUtil.h in Headers */,
+				7F469C7412088BEE009781BB /* exception.h in Headers */,
+				7F340ED0120AE72900F01926 /* hmap.h in Headers */,
+				7F79A512125CB34F00B22DA2 /* hdir.h in Headers */,
+				7FAB235A1291378A0035EDF5 /* hmutex.h in Headers */,
+				C981D02014FFC6270032F321 /* hfbase.h in Headers */,
+				D1BAE104183B921400BC2434 /* zipaccess.h in Headers */,
+				D115F7C714AD4FB400C78558 /* hsbase.h in Headers */,
+				D1BAE0F3183B91D100BC2434 /* hdbase.h in Headers */,
+				D1BAE0F4183B91D100BC2434 /* hrdir.h in Headers */,
+				D115F7C814AD4FB400C78558 /* hstream.h in Headers */,
+				D1DB1C20162854920013C0E5 /* hplatform.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8DC2EF4F0486A6940098B216 /* hltypes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "hltypes" */;
+			buildPhases = (
+				8DC2EF540486A6940098B216 /* Sources */,
+				D1E909FA163694EC00EB27EE /* Frameworks */,
+				8DC2EF500486A6940098B216 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = hltypes;
+			productInstallPath = "$(HOME)/Library/Frameworks";
+			productName = libhltypes;
+			productReference = 8DC2EF5B0486A6940098B216 /* hltypes.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D1522F3D140F7A310012F290 /* hltypes (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1522F48140F7A310012F290 /* Build configuration list for PBXNativeTarget "hltypes (iOS)" */;
+			buildPhases = (
+				D1522F3A140F7A310012F290 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "hltypes (iOS)";
+			productName = "libhltypes-ios";
+			productReference = D1522F3E140F7A310012F290 /* libhltypes.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		D1F27A8A177A2D0E00E5C131 /* hltypes (Mac) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1F27A99177A2D0E00E5C131 /* Build configuration list for PBXNativeTarget "hltypes (Mac)" */;
+			buildPhases = (
+				D1F27A8B177A2D0E00E5C131 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "hltypes (Mac)";
+			productName = "libhltypes-ios";
+			productReference = D1F27A9F177A2D0E00E5C131 /* libhltypes.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
+			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "hltypes" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 0867D691FE84028FC02AAC07 /* libhltypes */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DC2EF4F0486A6940098B216 /* hltypes */,
+				D1F27A8A177A2D0E00E5C131 /* hltypes (Mac) */,
+				D1522F3D140F7A310012F290 /* hltypes (iOS) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DC2EF540486A6940098B216 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F42F69911EB0B9500B1C1DF /* hfile.cpp in Sources */,
+				7F42F69A11EB0B9500B1C1DF /* hstring.cpp in Sources */,
+				7F469C7812088C00009781BB /* exception.cpp in Sources */,
+				D1BAE0FE183B91FC00BC2434 /* zipaccess.cpp in Sources */,
+				7F79A510125CB34400B22DA2 /* hdir.cpp in Sources */,
+				D1BAE0FB183B91FC00BC2434 /* hrdir.cpp in Sources */,
+				D1BAE0F8183B91FC00BC2434 /* hdbase.cpp in Sources */,
+				7FAB23551291377B0035EDF5 /* hthread.cpp in Sources */,
+				7FAB23561291377B0035EDF5 /* hmutex.cpp in Sources */,
+				D115F7C214AD4FA600C78558 /* hsbase.cpp in Sources */,
+				D115F7C314AD4FA600C78558 /* hstream.cpp in Sources */,
+				C9F9314014DA88B400954F90 /* hltypesUtil.cpp in Sources */,
+				C965F5BB14F3897B009F0EE5 /* hresource.cpp in Sources */,
+				D1D34304186250360040AA7F /* Apple_platform.mm in Sources */,
+				C981D01C14FFC5FE0032F321 /* hfbase.cpp in Sources */,
+				D1E909E71636911B00EB27EE /* hlog.cpp in Sources */,
+				D1E909F7163693BC00EB27EE /* Mac_platform.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1522F3A140F7A310012F290 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D122D39A14AD51F200F2886F /* hsbase.cpp in Sources */,
+				D122D39B14AD51F200F2886F /* hstream.cpp in Sources */,
+				D1981C14140F7F5C0057C3AF /* hthread.cpp in Sources */,
+				D1D34301186241AB0040AA7F /* hlog.cpp in Sources */,
+				D1BAE100183B91FC00BC2434 /* zipaccess.cpp in Sources */,
+				D1981C15140F7F5C0057C3AF /* hmutex.cpp in Sources */,
+				D1BAE0FD183B91FC00BC2434 /* hrdir.cpp in Sources */,
+				D1BAE0FA183B91FC00BC2434 /* hdbase.cpp in Sources */,
+				D1981C16140F7F5C0057C3AF /* hdir.cpp in Sources */,
+				D1981C17140F7F5C0057C3AF /* exception.cpp in Sources */,
+				D1981C18140F7F5C0057C3AF /* hfile.cpp in Sources */,
+				D1981C19140F7F5C0057C3AF /* hstring.cpp in Sources */,
+				C9F9314114DA88B400954F90 /* hltypesUtil.cpp in Sources */,
+				D1D34306186250360040AA7F /* Apple_platform.mm in Sources */,
+				C965F5BC14F3897B009F0EE5 /* hresource.cpp in Sources */,
+				C981D01D14FFC5FE0032F321 /* hfbase.cpp in Sources */,
+				D1E909F5163693B600EB27EE /* iOS_platform.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1F27A8B177A2D0E00E5C131 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1F27A8C177A2D0E00E5C131 /* hsbase.cpp in Sources */,
+				D1F27A8D177A2D0E00E5C131 /* hstream.cpp in Sources */,
+				D1F27A8E177A2D0E00E5C131 /* hthread.cpp in Sources */,
+				D1BAE0FF183B91FC00BC2434 /* zipaccess.cpp in Sources */,
+				D1F27A8F177A2D0E00E5C131 /* hmutex.cpp in Sources */,
+				D1BAE0FC183B91FC00BC2434 /* hrdir.cpp in Sources */,
+				D1BAE0F9183B91FC00BC2434 /* hdbase.cpp in Sources */,
+				D1F27A90177A2D0E00E5C131 /* hdir.cpp in Sources */,
+				D1F27A91177A2D0E00E5C131 /* exception.cpp in Sources */,
+				D1F27A92177A2D0E00E5C131 /* hfile.cpp in Sources */,
+				D1F27A93177A2D0E00E5C131 /* hstring.cpp in Sources */,
+				D1F27A94177A2D0E00E5C131 /* hltypesUtil.cpp in Sources */,
+				D1D34302186241AF0040AA7F /* Mac_platform.mm in Sources */,
+				D1D34305186250360040AA7F /* Apple_platform.mm in Sources */,
+				D1F27A95177A2D0E00E5C131 /* hresource.cpp in Sources */,
+				D1F27A96177A2D0E00E5C131 /* hfbase.cpp in Sources */,
+				D1F27A97177A2D0E00E5C131 /* hlog.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		7F7A5603129D435000E0ED12 /* App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PRODUCT_NAME = hltypes;
+			};
+			name = "App Store";
+		};
+		7F7A5604129D435000E0ED12 /* App Store */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1681B7318D7612F0088FC68 /* Mac.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				INFOPLIST_FILE = Info.plist;
+				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = "App Store";
+		};
+		C981CCAD132AE98F0072B5A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = _DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = hltypes;
+			};
+			name = Debug;
+		};
+		C981CCAE132AE98F0072B5A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1681B7318D7612F0088FC68 /* Mac.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				INFOPLIST_FILE = Info.plist;
+				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		C981CCAF132AE9960072B5A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PRODUCT_NAME = hltypes;
+			};
+			name = Release;
+		};
+		C981CCB0132AE9960072B5A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1681B7318D7612F0088FC68 /* Mac.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				INFOPLIST_FILE = Info.plist;
+				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		D1522F4A140F7A310012F290 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1681B7218D7612F0088FC68 /* iOS.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				PRODUCT_NAME = hltypes;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D1522F4C140F7A310012F290 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1681B7218D7612F0088FC68 /* iOS.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				PRODUCT_NAME = hltypes;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		D1522F4D140F7A310012F290 /* App Store */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1681B7218D7612F0088FC68 /* iOS.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				PRODUCT_NAME = hltypes;
+				SKIP_INSTALL = YES;
+			};
+			name = "App Store";
+		};
+		D1F27A9B177A2D0E00E5C131 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1681B7318D7612F0088FC68 /* Mac.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				PRODUCT_NAME = hltypes;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D1F27A9D177A2D0E00E5C131 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1681B7318D7612F0088FC68 /* Mac.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				PRODUCT_NAME = hltypes;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		D1F27A9E177A2D0E00E5C131 /* App Store */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1681B7318D7612F0088FC68 /* Mac.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				PRODUCT_NAME = hltypes;
+				SKIP_INSTALL = YES;
+			};
+			name = "App Store";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "hltypes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C981CCAE132AE98F0072B5A9 /* Debug */,
+				C981CCB0132AE9960072B5A9 /* Release */,
+				7F7A5604129D435000E0ED12 /* App Store */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "hltypes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C981CCAD132AE98F0072B5A9 /* Debug */,
+				C981CCAF132AE9960072B5A9 /* Release */,
+				7F7A5603129D435000E0ED12 /* App Store */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1522F48140F7A310012F290 /* Build configuration list for PBXNativeTarget "hltypes (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1522F4A140F7A310012F290 /* Debug */,
+				D1522F4C140F7A310012F290 /* Release */,
+				D1522F4D140F7A310012F290 /* App Store */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1F27A99177A2D0E00E5C131 /* Build configuration list for PBXNativeTarget "hltypes (Mac)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1F27A9B177A2D0E00E5C131 /* Debug */,
+				D1F27A9D177A2D0E00E5C131 /* Release */,
+				D1F27A9E177A2D0E00E5C131 /* App Store */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
